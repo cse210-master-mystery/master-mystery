@@ -1,3 +1,6 @@
+:root {
+  --yellow: #efc331;
+}
 @font-face {
   font-family: "Jersey10-Regular";
   src: url("./assets/fonts/Jersey10-Regular.ttf") format("truetype");
@@ -7,28 +10,67 @@ body {
   font-family: "Jersey10-Regular", monospace;
 }
 
+.screen-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0f0f0;
+  overflow: hidden;
+}
+
+.scalable-box {
+  aspect-ratio: 45 / 32;
+  width: auto;
+  max-width: 90vw;
+  height: auto;
+  max-height: 90vh;
+  background: #fff;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.scalable-box * {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 45 / 32;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Optional: scale text and elements */
+  font-size: calc(1.5vw + 1.5vh + 0.5vmin);
+  overflow: hidden;
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
 .home {
-  min-height: 100vh;
+  width: 100em;
+  height: auto;
+  display: block;
   background-image: url("./assets/images/homepage-background.png");
-  background-size: cover;
+  background-size: contain;
   background-position: center;
-  position: relative;
+  position: contain;
 }
 
 .center {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 60px;
 }
 
 .title {
   margin: 0;
-  font-size: 128px;
+  font-size: 7em;
   font-weight: 2000;
-  color: #efc331;
+  color: var(--yellow);
 
   text-shadow:
     -4px 0 0 #fff,
@@ -43,23 +85,25 @@ body {
 }
 
 .btnStart {
-  width: min(420px, 86vw);
-  height: 100px;
+  width: clamp(120px, 5em, 1000px);
+  height: clamp(60px, 2em, 140px);
   border-radius: 999px;
+  margin-bottom: 3em;
+  
 
-  border: 10px solid #a43a2a;
+  border: clamp(6px, 1vw, 16px) solid #a43a2a;
   background: #f1c84a;
 
   font-family: "Jersey10-Regular", monospace;
-  font-size: 64px;
+  font-size: clamp(16px, 5vw, 80px);
   font-weight: 700;
   color: #b24a3b;
   letter-spacing: 1px;
 
   box-shadow:
-    0 10px 0 rgba(0, 0, 0, 0.18),
-    inset 0 12px 0 rgba(255, 255, 255, 0.22),
-    inset 0 -12px 0 rgba(0, 0, 0, 0.1);
+    0 clamp(6px, 1vw, 16px) 0 rgba(0, 0, 0, 0.18),
+    inset 0 clamp(8px, 1vw, 16px) 0 rgba(255, 255, 255, 0.22),
+    inset 0 clamp(-8px, -1vw, -16px) 0 rgba(0, 0, 0, 0.1);
 
   cursor: pointer;
   outline: none;
@@ -84,16 +128,16 @@ body {
 
 .menuBtn {
   position: absolute;
-  right: 24px;
-  bottom: 24px;
+  top: 24px; /* Changed from bottom to top */
+  left: 24px; /* Changed from right to left */
 
   padding: 0;
   border: 0;
   background: transparent;
   cursor: pointer;
 
-  width: 96px;
-  height: 96px;
+  width: clamp(50px, 8vw, 80px);
+  height: clamp(50px, 8vw, 80px);
 
   display: grid;
   place-items: center;
@@ -102,8 +146,7 @@ body {
 }
 
 .menuBtn img {
-  width: 80px;
-  height: 80px;
+  width: 100%;
   display: block;
 
   user-select: none;
