@@ -3,7 +3,8 @@
   --brown-orange: #a43a2a;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -30,13 +31,10 @@ body {
 }
 .game-scale {
   width: 1440px;
-  height: 1024px; 
+  height: 1024px;
   position: relative;
 
-  --scale: min(
-    calc(100vw / 1440),
-    calc(100vh / 1024)
-  );
+  --scale: min(calc(100vw / 1440), calc(100vh / 1024));
 
   width: calc(1440 * var(--scale));
   height: calc(1024 * var(--scale));
@@ -44,18 +42,17 @@ body {
   transform-origin: center;
 
   --shadow-size: min(1vw, 1.40625vh);
-  font-size: min(1vw, 1.40625vh); 
+  font-size: min(1vw, 1.40625vh);
   transform-origin: center;
   overflow: hidden;
   position: relative;
-  
 }
 
 .home {
   position: absolute;
   inset: 0;
   background-image: url("./assets/images/homepage-background.png");
-  background-size: contain;        
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -91,7 +88,6 @@ body {
   height: calc(10 * min(1vw, 1.40625vh));
   border-radius: 999px;
   margin-bottom: 1em;
-  
 
   border: min(1vw, 1.40625vh) solid var(--brown-orange);
   background: var(--yellow);
