@@ -25,26 +25,28 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #000;
+  background-color: white;
   overflow: hidden;
 }
 .game-scale {
-  display: inline-block;
+  width: 1440px;
+  height: 1024px; 
+  position: relative;
 
   --scale: min(
-    calc(100vw / 1440px),
-    calc(100vh / 1024px)
+    calc(100vw / 1440),
+    calc(100vh / 1024)
   );
 
-  transform: scale(var(--scale));
-  width: calc(144.0 * min(1vw, 1.40625vh));
-  height: calc(102.4 * min(1vw, 1.40625vh));
+  width: calc(1440 * var(--scale));
+  height: calc(1024 * var(--scale));
+
+  transform-origin: center;
 
   --shadow-size: min(1vw, 1.40625vh);
   font-size: min(1vw, 1.40625vh); 
   transform-origin: center;
   overflow: hidden;
-  background-color: #a43a2a;
   position: relative;
   
 }
@@ -128,8 +130,8 @@ body {
 
 .menuBtn {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: calc(1.5 * min(1vw, 1.40625vh));
+  left: calc(1.5 * min(1vw, 1.40625vh));
 
   padding: 0;
   border: 0;
