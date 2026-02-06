@@ -1,0 +1,165 @@
+/* Remove standard button styles to prevent conflicts */
+.btn {
+  /* Inherited basic resets from your previous setup */
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  position: relative; /* Essential for the glossy overlay */
+  border: none;
+}
+
+.btn-start {
+  /* 1. SIZE & SHAPE */
+  width: min(420px, 86vw);
+  height: 100px;
+  border-radius: 20px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 2. COLORS & BORDER */
+  /* The main face is a gradient from light yellow to slightly darker yellow */
+  /* background: linear-gradient(180deg, #ffd600 0%, #ffd600 100%); */
+  background-color: #ffd600;
+  /* The dark red stroke around the whole object */
+  border: 5px solid #a90900;
+
+  /* 3. THE 3D DEPTH (The "Slab") */
+  /* We use box-shadow to paint the orange block underneath the yellow face */
+  box-shadow: 
+    /* SLAB 1: Light Orange (Top layer of depth) */
+    0px 3px 0px #fa3e1f,
+    /* SLAB 2: Darker Orange/Red (Middle layer) */ 0px 10px 0px #bf0f03,
+    /* SLAB 3: Darkest Red/Brown (Bottom layer/Base) */ 0px 12px 0px #600202,
+    /* FLOOR SHADOW: Soft black shadow on the ground */ 0px 30px 15px rgba(0, 0, 0, 0.4),
+    /* INNER GLOSS: Highlighting the top edge of the button face */ inset 0px 3px 0px
+      rgba(255, 255, 255, 0);
+
+  /* Adjust transition for the bigger movement */
+  transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* 4. TEXT STYLES */
+  font-family: "Jersey10-Regular", monospace;
+  font-size: 64px;
+  font-weight: 700;
+  color: #b23b2b; /* Darker red text to match image contrast */
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4); /* Slight engraving effect */
+  letter-spacing: 1px;
+
+  /* Animation smoothing */
+  transition:
+    transform 0.1s,
+    box-shadow 0.1s,
+    filter 0.1s;
+}
+
+
+/* THE GLOSS EFFECT (The shiny reflection on top) */
+.btn-start::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  height: 42%; /* Only covers the top half */
+
+  /* A white gradient fading to transparent */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 100%);
+
+  border-radius: 12px 12px 16px 16px; /* Matches button curve */
+  pointer-events: none; /* Let clicks pass through to the button */
+}
+
+/* HOVER STATE */
+.btn-start:hover {
+  filter: brightness(1.05); /* Slightly brighter */
+}
+
+/* ACTIVE / CLICK STATE */
+.btn-start:active {
+  /* Push the button down to simulate pressing */
+  transform: translateY(8px);
+
+  /* Shrink the shadow to make it look like it's merging with the base */
+  box-shadow:
+    0px 4px 0px #d65a18,
+    /* Shadow gets smaller */ 0px 6px 4px rgba(0, 0, 0, 0.2),
+    inset 0px 2px 0px rgba(255, 255, 255, 0.5);
+}
+
+.btn-round {
+  /* 1. SIZE & SHAPE */
+  width: 85px;
+  height: 85px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden; /* Keeps the gloss inside the circle */
+
+  /* 2. COLORS & BASE GRADIENT */
+  /* This creates the subtle darker orange at the bottom and bright yellow at the top */
+  background: radial-gradient(circle at 50% 10%, #ffea00 0%, #ffd600 60%, #f58614 100%);
+  border: 5px solid #a90900;
+
+  /* 3. INNER SHADOWS (The "Shiny" Depth) */
+  box-shadow:
+    inset 0px -6px 8px rgba(0, 0, 0, 0.2),
+    /* Bottom inner shadow */ inset 0px 4px 6px rgba(255, 255, 255, 0.6); /* Top inner rim light */
+
+  /* 4. FONT STYLES */
+  font-family: "Jersey10-Regular", monospace;
+  font-size: 32px;
+  font-weight: 700;
+  color: #b23b2b;
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4);
+  letter-spacing: 1px;
+  line-height: 1;
+  z-index: 1; /* Ensures text stays above background */
+
+  /* 5. ANIMATION */
+  transition:
+    transform 0.1s ease-in-out,
+    filter 0.1s ease;
+}
+
+/* THE GLOSS (The white bean shape on top) */
+.btn-round::before {
+  content: "";
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 35%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.1) 100%);
+  border-radius: 50% 50% 45% 45%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* THE LOWER GLOSS (Optional, for extra shine at the bottom) */
+.btn-round::after {
+  content: "";
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 10%;
+  background: rgba(255, 255, 255, 0.3);
+  filter: blur(4px);
+  border-radius: 50%;
+}
+
+.btn-round:hover {
+  filter: brightness(1.08);
+}
+
+/* ACTIVE STATE - The Shrink */
+.btn-round:active {
+  transform: scale(0.9);
+}
