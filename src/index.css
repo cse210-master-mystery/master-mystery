@@ -101,7 +101,7 @@ body {
   box-shadow:
     0 clamp(6px, 1vw, 16px) 0 rgba(0, 0, 0, 0.18),
     inset 0 clamp(8px, 1vw, 16px) 0 rgba(255, 255, 255, 0.22),
-    inset 0 clamp(-8px, -1vw, -16px) 0 rgba(0, 0, 0, 0.1);
+    inset 0 clamp(-16px, -1vw, -8px) 0 rgba(0, 0, 0, 0.1);
 
   cursor: pointer;
   outline: none;
