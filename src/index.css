@@ -1,3 +1,16 @@
+:root {
+  --yellow: #efc331;
+  --brown-orange: #a43a2a;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
 @font-face {
   font-family: "Jersey10-Regular";
   src: url("./assets/fonts/Jersey10-Regular.ttf") format("truetype");
@@ -7,59 +20,88 @@ body {
   font-family: "Jersey10-Regular", monospace;
 }
 
-.home {
-  min-height: 100vh;
-  background-image: url("./assets/images/homepage-background.png");
-  background-size: cover;
-  background-position: center;
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  overflow: hidden;
+}
+.game-scale {
+  width: 1440px;
+  height: 1024px;
+  position: relative;
+
+  --scale: min(calc(100vw / 1440), calc(100vh / 1024));
+
+  width: calc(1440 * var(--scale));
+  height: calc(1024 * var(--scale));
+
+  transform-origin: center;
+
+  --shadow-size: min(1vw, 1.40625vh);
+  font-size: min(1vw, 1.40625vh);
+  transform-origin: center;
+  overflow: hidden;
   position: relative;
 }
 
+.home {
+  position: absolute;
+  inset: 0;
+  background-image: url("./assets/images/homepage-background.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .center {
-  min-height: 100vh;
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 60px;
 }
 
 .title {
-  margin: 0;
-  font-size: 128px;
+  font-size: 14em;
   font-weight: 2000;
-  color: #efc331;
+  color: var(--yellow);
 
   text-shadow:
-    -4px 0 0 #fff,
-    4px 0 0 #fff,
-    0 -4px 0 #fff,
-    0 4px 0 #fff,
-    -4px -4px 0 #fff,
-    4px -4px 0 #fff,
-    -4px 4px 0 #fff,
-    4px 4px 0 #fff,
-    0 6px 0 rgba(0, 0, 0, 0.25);
+    calc(-1 * var(--shadow-size)) 0 0 #fff,
+    var(--shadow-size) 0 0 #fff,
+    0 calc(-1 * var(--shadow-size)) 0 #fff,
+    0 var(--shadow-size) 0 #fff,
+    calc(-1 * var(--shadow-size)) calc(-1 * var(--shadow-size)) 0 #fff,
+    var(--shadow-size) calc(-1 * var(--shadow-size)) 0 #fff,
+    calc(-1 * var(--shadow-size)) var(--shadow-size) 0 #fff,
+    var(--shadow-size) var(--shadow-size) 0 #fff,
+    0 calc(0.75 * var(--shadow-size)) 0 rgba(0, 0, 0, 0.25);
 }
 
 .btnStart {
-  width: min(420px, 86vw);
-  height: 100px;
+  width: calc(30 * min(1vw, 1.40625vh));
+  height: calc(10 * min(1vw, 1.40625vh));
   border-radius: 999px;
+  margin-bottom: 1em;
 
-  border: 10px solid #a43a2a;
-  background: #f1c84a;
+  border: min(1vw, 1.40625vh) solid var(--brown-orange);
+  background: var(--yellow);
 
   font-family: "Jersey10-Regular", monospace;
-  font-size: 64px;
+  font-size: 7em;
   font-weight: 700;
-  color: #b24a3b;
+  color: var(--brown-orange);
   letter-spacing: 1px;
 
   box-shadow:
-    0 10px 0 rgba(0, 0, 0, 0.18),
-    inset 0 12px 0 rgba(255, 255, 255, 0.22),
-    inset 0 -12px 0 rgba(0, 0, 0, 0.1);
+    0 clamp(6px, 1vw, 16px) 0 rgba(0, 0, 0, 0.18),
+    inset 0 clamp(8px, 1vw, 16px) 0 rgba(255, 255, 255, 0.22),
+    inset 0 clamp(-16px, -1vw, -8px) 0 rgba(0, 0, 0, 0.1);
 
   cursor: pointer;
   outline: none;
@@ -71,7 +113,7 @@ body {
 }
 
 .btnStart:hover {
-  filter: brightness(1.03);
+  transform: scale(1.04);
 }
 
 .btnStart:active {
@@ -84,16 +126,16 @@ body {
 
 .menuBtn {
   position: absolute;
-  right: 24px;
-  bottom: 24px;
+  top: calc(1.5 * min(1vw, 1.40625vh));
+  left: calc(1.5 * min(1vw, 1.40625vh));
 
   padding: 0;
   border: 0;
   background: transparent;
   cursor: pointer;
 
-  width: 96px;
-  height: 96px;
+  width: calc(6 * min(1vw, 1.40625vh));
+  height: calc(6 * min(1vw, 1.40625vh));
 
   display: grid;
   place-items: center;
@@ -102,8 +144,7 @@ body {
 }
 
 .menuBtn img {
-  width: 80px;
-  height: 80px;
+  width: 100%;
   display: block;
 
   user-select: none;
