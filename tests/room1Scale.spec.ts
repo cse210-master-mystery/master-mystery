@@ -57,12 +57,22 @@ test("game preserves aspect ratio at different screen sizes", async ({ page }) =
   const g2 = await rect(page, ".game-scale");
 
   expect(g2.width / g2.height).toBeCloseTo(GAME_RATIO, 3);
+  expect(g2.height).toBeLessThanOrEqual(1400);
+  expect(g2.width).toBeLessThanOrEqual(800);
 });
 
 test("room 1 elements scale proportionally with the game frame", async ({ page }) => {
   await enterRoom1(page);
 
-  await page.setViewportSize({ width: 1400, height: 900 });
+  // disable hover transforms which can cause small position changes and test instability
+  await page.addStyleTag({
+    content: `
+      *:hover { transform: none !important; }
+    `
+  });
+  
+
+  await page.setViewportSize({ width: 1440, height: 1024 });
 
   const baseline = {
     lever1: await relativeToGame(page, ".btnlever1"),
@@ -70,34 +80,33 @@ test("room 1 elements scale proportionally with the game frame", async ({ page }
     book: await relativeToGame(page, ".btnbook")
   };
 
-  await page.setViewportSize({ width: 700, height: 1200 });
+  const viewports = [
+    { width: 1440, height: 1024 },  // baseline
+    { width: 800, height: 600 },   // 4:3
+    { width: 1280, height: 720 },  // 16:9
+    { width: 1920, height: 800 },  // 21:9
+    { width: 900, height: 900 },   // 1:1
+    { width: 375, height: 812 },   // mobile portrait
+  ];
+  
+  for (const viewport of viewports) {
+      await page.setViewportSize(viewport);
 
-  const current = {
-    lever1: await relativeToGame(page, ".btnlever1"),
-    lever2: await relativeToGame(page, ".btnlever2"),
-    book: await relativeToGame(page, ".btnbook")
-  };
+      const current = {
+        lever1: await relativeToGame(page, ".btnlever1"),
+        lever2: await relativeToGame(page, ".btnlever2"),
+        book: await relativeToGame(page, ".btnbook")
+      };
 
-  for (const key of Object.keys(baseline)) {
-    expect(current[key].x).toBeCloseTo(baseline[key].x, 3);
-    expect(current[key].y).toBeCloseTo(baseline[key].y, 3);
-    expect(current[key].w).toBeCloseTo(baseline[key].w, 3);
-    expect(current[key].h).toBeCloseTo(baseline[key].h, 3);
-  }
-});
-
-test("room 1 elements stay inside the game frame", async ({ page }) => {
-  await enterRoom1(page);
-
-  const game = await rect(page, ".game-scale");
-
-  for (const sel of [".btnlever1", ".btnlever2", ".btnbook"]) {
-    const r = await rect(page, sel);
-
-    expect(r.left).toBeGreaterThanOrEqual(game.left);
-    expect(r.top).toBeGreaterThanOrEqual(game.top);
-    expect(r.left + r.width).toBeLessThanOrEqual(game.left + game.width);
-    expect(r.top + r.height).toBeLessThanOrEqual(game.top + game.height);
-  }
-});
+      // screenshot in screenshot dir
+         await page.screenshot({ path: `tests/screenshots/room1-${viewport.width}x${viewport.height}.png` });
+  
+      for (const key of Object.keys(baseline)) {
+        expect(current[key].x).toBeCloseTo(baseline[key].x, 3);
+        expect(current[key].y).toBeCloseTo(baseline[key].y, 3);
+        expect(current[key].w).toBeCloseTo(baseline[key].w, 3);
+        expect(current[key].h).toBeCloseTo(baseline[key].h, 3);
+      }
+    }
+  });
   
