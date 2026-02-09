@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+}
+
+.keypad {
+  width: 360px;
+  margin: 60px auto;
+  padding: 30px;
+  background: teal;
+  text-align: center;
+  font-family: system-ui, sans-serif;
+  border-radius: 20px;
+}
+
+.display {
+  background: #111;
+  color: gray;
+  padding: 20px;
+  font-size: 32px;
+  letter-spacing: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.display.result {
+    letter-spacing: 0px;
+    color: blue;
+}
+
+/* .message {
+  height: 24px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: blue;
+} */
+
+.keypad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+}
+
+.key {
+  padding: 22px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: #f2f2f2;
+  transition: all 0.15s ease;
+}
+
+.key:hover {
+  background: #e0e0e0;
+}
+
+.key:active {
+  transform: scale(0.95);
+}
+
+.key.key-clear {
+  background: #ff5f5f;
+  color: white;
+}
+
+.key.key-enter {
+  background: #4caf50;
+  color: white;
+}
