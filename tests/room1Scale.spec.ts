@@ -25,7 +25,7 @@ async function rect(page, selector) {
     left: box.x,
     top: box.y,
     width: box.width,
-    height: box.height
+    height: box.height,
   };
 }
 
@@ -37,7 +37,7 @@ async function relativeToGame(page, selector) {
     x: (el.left - game.left) / game.width,
     y: (el.top - game.top) / game.height,
     w: el.width / game.width,
-    h: el.height / game.height
+    h: el.height / game.height,
   };
 }
 
@@ -68,45 +68,45 @@ test("room 1 elements scale proportionally with the game frame", async ({ page }
   await page.addStyleTag({
     content: `
       *:hover { transform: none !important; }
-    `
+    `,
   });
-  
 
   await page.setViewportSize({ width: 1440, height: 1024 });
 
   const baseline = {
     lever1: await relativeToGame(page, ".btnlever1"),
     lever2: await relativeToGame(page, ".btnlever2"),
-    book: await relativeToGame(page, ".btnbook")
+    book: await relativeToGame(page, ".btnbook"),
   };
 
   const viewports = [
-    { width: 1440, height: 1024 },  // baseline
-    { width: 800, height: 600 },   // 4:3
-    { width: 1280, height: 720 },  // 16:9
-    { width: 1920, height: 800 },  // 21:9
-    { width: 900, height: 900 },   // 1:1
-    { width: 375, height: 812 },   // mobile portrait
+    { width: 1440, height: 1024 }, // baseline
+    { width: 800, height: 600 }, // 4:3
+    { width: 1280, height: 720 }, // 16:9
+    { width: 1920, height: 800 }, // 21:9
+    { width: 900, height: 900 }, // 1:1
+    { width: 375, height: 812 }, // mobile portrait
   ];
-  
+
   for (const viewport of viewports) {
-      await page.setViewportSize(viewport);
+    await page.setViewportSize(viewport);
 
-      const current = {
-        lever1: await relativeToGame(page, ".btnlever1"),
-        lever2: await relativeToGame(page, ".btnlever2"),
-        book: await relativeToGame(page, ".btnbook")
-      };
+    const current = {
+      lever1: await relativeToGame(page, ".btnlever1"),
+      lever2: await relativeToGame(page, ".btnlever2"),
+      book: await relativeToGame(page, ".btnbook"),
+    };
 
-      // screenshot in screenshot dir
-         await page.screenshot({ path: `tests/screenshots/room1-${viewport.width}x${viewport.height}.png` });
-  
-      for (const key of Object.keys(baseline)) {
-        expect(current[key].x).toBeCloseTo(baseline[key].x, 3);
-        expect(current[key].y).toBeCloseTo(baseline[key].y, 3);
-        expect(current[key].w).toBeCloseTo(baseline[key].w, 3);
-        expect(current[key].h).toBeCloseTo(baseline[key].h, 3);
-      }
+    // screenshot in screenshot dir
+    await page.screenshot({
+      path: `tests/screenshots/room1-${viewport.width}x${viewport.height}.png`,
+    });
+
+    for (const key of Object.keys(baseline)) {
+      expect(current[key].x).toBeCloseTo(baseline[key].x, 3);
+      expect(current[key].y).toBeCloseTo(baseline[key].y, 3);
+      expect(current[key].w).toBeCloseTo(baseline[key].w, 3);
+      expect(current[key].h).toBeCloseTo(baseline[key].h, 3);
     }
-  });
-  
+  }
+});
