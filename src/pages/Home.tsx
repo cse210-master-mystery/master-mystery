@@ -1,5 +1,4 @@
 import menuPng from "../assets/images/menu.png";
-import Button from "../components/buttons/Buttons";
 
 export default function Home() {
   return (
@@ -9,15 +8,9 @@ export default function Home() {
           <div className="center">
             <h1 className="title">Matter Mystery</h1>
 
-        {/* <button className="btnStart" onClick={() => console.log("start")}>
+        <button className="btnStart" onClick={() => console.log("start")}>
           Start
-        </button> */}
-        <Button variant="start" onClick={() => console.log("start")}>
-          Start
-        </Button>
-        <Button variant="round" onClick={() => console.log("round")}>
-          Round
-        </Button>
+        </button>
       </div>
 
           <button className="menuBtn" onClick={() => console.log("menu")} aria-label="Open menu">
