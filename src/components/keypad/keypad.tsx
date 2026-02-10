@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./keypad.css";
 
 type KeyType = "digit" | "clear" | "enter";
@@ -27,59 +27,82 @@ const keys: KeyConfig[] = [
 ];
 
 const Keypad: React.FC = () => {
-const [value, setValue] = useState<string>("");
-const [message, setMessage] = useState<string>("");
+    const [value, setValue] = useState<string>("");
+    const [message, setMessage] = useState<string>("");
 
-const handleClick = (key: KeyConfig) => {
-    if (key.type === "clear") {
-        setValue("");
-        setMessage("");
-        return;
-    }
-
-    if (key.type === "enter") {
-        if (value.length !== 3) {
-            return;
-        }
-
-        if (value === CORRECT_CODE) {
-            setMessage("CORRECT");
-        } 
-        else {
-            setMessage("INCORRECT");
-        }
-
-        setTimeout(() => {
+    const handleClick = (key: KeyConfig) => {
+        if (key.type === "clear") {
             setValue("");
             setMessage("");
-        }, 1500);
-        return;
-    }
+            return;
+        }
+        else if (key.type === "enter") {
+            if (value.length !== 3) {
+                return;
+            }
 
-    if (value.length < 3) {
-        setValue((prev) => prev + key.value);
-    }
-};
+            if (value === CORRECT_CODE) {
+                setMessage("CORRECT");
+            } 
+            else {
+                setMessage("INCORRECT");
+            }
 
-  return (
-    <div className="keypad">
-        <div className={`display ${message ? "result" : ""}`}>
-            {message ? message : value.padEnd(3, "_")}
+            setTimeout(() => {
+                setValue("");
+                setMessage("");
+            }, 1500);
+            return;
+        }
+        else {
+            if (value.length < 3) {
+                setValue((prev) => prev + key.value);
+            }
+            else {
+                setValue((prev) => prev.slice(1) + key.value)
+            }
+        }
+    };
+
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            const key = event.key
+
+            if (/^[0-9]$/i.test(event.key)) {
+                handleClick({ label: key, value: key, type: "digit" })
+            }
+            else if (key === "Enter") {
+                handleClick({ label: key, value: "enter", type: "enter"})
+            }
+            else if (key === "Backspace" || key === "Delete") {
+                handleClick({ label: "Clear", value: "clear", type: "clear" })
+            }            
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    });
+
+    return (
+        <div className="keypad">
+            <div className={`display ${message ? "result" : ""}`}>
+                {message ? message : value.padEnd(3, "_")}
+            </div>
+
+            <div className="keypad-grid">
+                {keys.map((key) => (
+                <button
+                    key={key.label}
+                    className={`key key-${key.type}`}
+                    onClick={() => handleClick(key)}
+                >
+                    {key.label}
+                </button>
+                ))}
+            </div>
         </div>
-
-        <div className="keypad-grid">
-            {keys.map((key) => (
-            <button
-                key={key.label}
-                className={`key key-${key.type}`}
-                onClick={() => handleClick(key)}
-            >
-                {key.label}
-            </button>
-            ))}
-        </div>
-    </div>
-  );
+    );
 };
 
 export default Keypad;
