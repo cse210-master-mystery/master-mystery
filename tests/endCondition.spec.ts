@@ -7,9 +7,7 @@ test.describe("End-condition triggers from Room1", () => {
     await page.locator(".btnlever1").click();
 
     await expect(page).toHaveURL(/EndPage/);
-    await expect(
-      page.getByRole("heading", { name: /Congrats/i }),
-    ).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Congrats/i })).toBeVisible();
   });
 
   test("lever2 triggers failure end page", async ({ page }) => {
@@ -18,14 +16,10 @@ test.describe("End-condition triggers from Room1", () => {
     await page.locator(".btnlever2").click();
 
     await expect(page).toHaveURL(/FailPage/);
-    await expect(
-      page.getByRole("heading", { name: /Ran Out of Time/i }),
-    ).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Ran Out of Time/i })).toBeVisible();
   });
 
-  test("full flow: start -> room1 -> success end -> return home", async ({
-    page,
-  }) => {
+  test("full flow: start -> room1 -> success end -> return home", async ({ page }) => {
     await page.goto("/");
 
     await page.getByRole("button", { name: "Start" }).click();
@@ -38,9 +32,7 @@ test.describe("End-condition triggers from Room1", () => {
     await expect(page).toHaveURL(/master-mystery/);
   });
 
-  test("full flow: start -> room1 -> failure end -> return home", async ({
-    page,
-  }) => {
+  test("full flow: start -> room1 -> failure end -> return home", async ({ page }) => {
     await page.goto("/");
 
     await page.getByRole("button", { name: "Start" }).click();

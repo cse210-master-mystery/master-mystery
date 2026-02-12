@@ -10,10 +10,7 @@ export default function EndPage() {
           <div className="center">
             <h1 className="end-title">Congrats!</h1>
             <h2 className="end-subtitle">YOU ESCAPED!</h2>
-            <button
-              className="btnReturn"
-              onClick={() => navigate("/master-mystery")}
-            >
+            <button className="btnReturn" onClick={() => navigate("/master-mystery")}>
               Return
             </button>
           </div>
