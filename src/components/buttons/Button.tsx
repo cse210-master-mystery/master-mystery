@@ -1,5 +1,5 @@
 import React, { type ButtonHTMLAttributes } from "react";
-import "./Buttons.css";
+import "./Button.css";
 
 
 type ButtonVariant = "start" | "round";
