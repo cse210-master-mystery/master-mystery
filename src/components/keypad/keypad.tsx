@@ -76,7 +76,7 @@ const Keypad: React.FC = () => {
             }
             else if (key === "Backspace" || key === "Delete") {
                 handleClick({ label: "Clear", value: "clear", type: "clear" })
-            }            
+            }
         };
         window.addEventListener("keydown", handleKeyDown);
         return () => {
