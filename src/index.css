@@ -229,7 +229,8 @@ body {
   background-repeat: no-repeat;
 }
 
-.end-page--success {
+.end-page--success,
+.end-page--failure {
   background-image: url("./assets/images/endpage-background.png");
 }
 
