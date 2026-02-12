@@ -7,16 +7,16 @@
 }
 
 .btn-start {
-  width: min(420px, 86vw);
-  height: 100px;
-  border-radius: 20px;
+  width: calc(30 * min(1vw, 1.40625vh));
+  height: calc(10 * min(1vw, 1.40625vh));
+  border-radius: 0.3em;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
 
   background-color: #ffd600;
-  border: 5px solid #a90900;
+  border: 0.09em solid #a90900;
 
   box-shadow:
     0px 3px 0px #fa3e1f,
@@ -31,7 +31,7 @@
     filter 0.1s;
 
   font-family: "Jersey10-Regular", monospace;
-  font-size: 64px;
+  font-size: 10em;
   font-weight: 700;
   color: #b23b2b;
   text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4);
@@ -52,6 +52,7 @@
 
 .btn-start:hover {
   filter: brightness(1.05);
+  transform: scale(1.04);
 }
 
 .btn-start:active {
@@ -63,8 +64,8 @@
 }
 
 .btn-round {
-  width: 85px;
-  height: 85px;
+  width: calc(10 * min(1vw, 1.40625vh));
+  height: calc(10 * min(1vw, 1.40625vh));
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   display: flex;
@@ -74,14 +75,14 @@
   overflow: hidden;
 
   background: radial-gradient(circle at 50% 10%, #ffea00 0%, #ffd600 60%, #f58614 100%);
-  border: 5px solid #a90900;
+  border: 0.15em solid #a90900;
 
   box-shadow:
     inset 0px -6px 8px rgba(0, 0, 0, 0.2),
     inset 0px 4px 6px rgba(255, 255, 255, 0.6);
 
   font-family: "Jersey10-Regular", monospace;
-  font-size: 32px;
+  font-size: 4.5em;
   font-weight: 700;
   color: #b23b2b;
   text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4);
@@ -123,6 +124,7 @@
 
 .btn-round:hover {
   filter: brightness(1.08);
+  transform: scale(1.04);
 }
 
 .btn-round:active {
