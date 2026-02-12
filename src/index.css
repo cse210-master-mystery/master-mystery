@@ -48,6 +48,8 @@ body {
   position: relative;
 }
 
+/* start/home page */
+
 .home {
   position: absolute;
   inset: 0;
@@ -165,4 +167,54 @@ body {
   outline: 3px solid rgba(255, 255, 255, 0.75);
   outline-offset: 6px;
   border-radius: 999px;
+}
+
+/* room 1 */
+
+.room1bkg {
+  position: absolute;
+  inset: 0;
+  background-image: url("./assets/images/room1-background.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.btnlever1 {
+  width: calc(14 * min(1vw, 1.40625vh));
+
+  /* location */
+  position: absolute;
+  top: calc(56% - (15 * min(1vw, 1.40625vh)) / 2);
+  left: calc(64% - (15 * min(1vw, 1.40625vh)) / 2);
+}
+
+.btnlever1:hover {
+  transform: scale(1.04);
+}
+
+.btnlever2 {
+  width: calc(15 * min(1vw, 1.40625vh));
+
+  /* location */
+  position: absolute;
+  top: calc(57% - (15 * min(1vw, 1.40625vh)) / 2);
+  left: calc(78% - (15 * min(1vw, 1.40625vh)) / 2);
+}
+
+.btnlever2:hover {
+  transform: scale(1.04);
+}
+
+.btnbook {
+  width: calc(34 * min(1vw, 1.40625vh));
+
+  /* location */
+  position: absolute;
+  top: calc(95.5% - (15 * min(1vw, 1.40625vh)) / 2);
+  left: calc(22.8% - (15 * min(1vw, 1.40625vh)) / 2);
+}
+
+.btnbook:hover {
+  transform: scale(1.04);
 }
