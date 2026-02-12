@@ -1,7 +1,6 @@
 import React, { type ButtonHTMLAttributes } from "react";
 import "./Button.css";
 
-
 type ButtonVariant = "start" | "round";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -14,9 +13,7 @@ const Button: React.FC<ButtonProps> = ({
   className = "",
   ...props
 }) => {
-  const computedClasses = ["btn", `btn-${variant}`, className]
-    .filter(Boolean)
-    .join(" ");
+  const computedClasses = ["btn", `btn-${variant}`, className].filter(Boolean).join(" ");
 
   return (
     <button className={computedClasses} {...props}>
