@@ -10,8 +10,8 @@ export default function Room1() {
     <div className="wrapper">
       <div className="game-scale">
         <div className="room1bkg">
-          <img src={lever1img} className="btnlever1" onClick={() => navigate("/EndPage")} />
-          <img src={lever2img} className="btnlever2" onClick={() => navigate("/FailPage")} />
+          <img src={lever1img} className="btnlever1" onClick={() => navigate("/end-page")} />
+          <img src={lever2img} className="btnlever2" onClick={() => navigate("/fail-page")} />
           <img src={bookimg} className="btnbook" onClick={() => navigate("/")} />
         </div>
       </div>

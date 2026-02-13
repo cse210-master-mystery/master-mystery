@@ -11,9 +11,9 @@ export default function App() {
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Room1" element={<Room1 />} />
-        <Route path="/EndPage" element={<EndPage />} />
-        <Route path="/FailPage" element={<FailPage />} />
+        <Route path="/room1" element={<Room1 />} />
+        <Route path="/end-page" element={<EndPage />} />
+        <Route path="/fail-page" element={<FailPage />} />
       </Routes>
     </BrowserRouter>
   );
