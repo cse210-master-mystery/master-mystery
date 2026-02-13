@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe("End Page - Success", () => {
   test("displays congratulations message and Return button", async ({ page }) => {
-    await page.goto("/EndPage");
+    await page.goto("end-page");
 
     await expect(page.getByRole("heading", { name: /Congrats/i })).toBeVisible();
     await expect(page.getByRole("heading", { name: /YOU ESCAPED/i })).toBeVisible();
@@ -10,7 +10,7 @@ test.describe("End Page - Success", () => {
   });
 
   test("Return button navigates back to home page", async ({ page }) => {
-    await page.goto("/EndPage");
+    await page.goto("end-page");
 
     await page.getByRole("button", { name: "Return" }).click();
 
@@ -21,7 +21,7 @@ test.describe("End Page - Success", () => {
 
 test.describe("End Page - Failure", () => {
   test("displays failure message and Return button", async ({ page }) => {
-    await page.goto("/FailPage");
+    await page.goto("fail-page");
 
     await expect(page.getByRole("heading", { name: /Ran Out of Time/i })).toBeVisible();
     await expect(page.getByRole("heading", { name: /Maybe Next Time/i })).toBeVisible();
@@ -29,7 +29,7 @@ test.describe("End Page - Failure", () => {
   });
 
   test("Return button navigates back to home page", async ({ page }) => {
-    await page.goto("/FailPage");
+    await page.goto("fail-page");
 
     await page.getByRole("button", { name: "Return" }).click();
 

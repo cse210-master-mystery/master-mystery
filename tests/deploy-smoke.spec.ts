@@ -16,7 +16,7 @@ test("deployment smoke: loads home and assets without errors", async ({ page }) 
     }
   });
 
-  await page.goto("/", { waitUntil: "networkidle" });
+  await page.goto("./", { waitUntil: "networkidle" });
 
   await expect(page.getByRole("heading", { name: "Matter Mystery" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Start" })).toBeVisible();
