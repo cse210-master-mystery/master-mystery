@@ -48,6 +48,31 @@ body {
   position: relative;
 }
 
+/* clock overlay */
+.game-clock {
+  position: absolute;
+  top: calc(2 * min(1vw, 1.40625vh));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  pointer-events: none;
+
+  /* digits only: no box */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  height: auto;
+  min-width: 0;
+
+  font-family: "Jersey10-Regular", monospace;
+  font-size: 4em;
+  font-weight: 700;
+  color: var(--yellow);
+  letter-spacing: 2px;
+  line-height: 1;
+  text-align: center;
+}
 /* start/home page */
 
 .home {
@@ -126,47 +151,54 @@ body {
     inset 0 -12px 0 rgba(0, 0, 0, 0.12);
 }
 
-.menuBtn {
+.btnMenu {
   position: absolute;
   top: calc(1.5 * min(1vw, 1.40625vh));
   left: calc(1.5 * min(1vw, 1.40625vh));
 
-  padding: 0;
-  border: 0;
-  background: transparent;
+  width: calc(14 * min(1vw, 1.40625vh));
+  height: calc(5 * min(1vw, 1.40625vh));
+  border-radius: 999px;
+
+  border: 5px solid var(--brown-orange);
+  background: var(--yellow);
+
+  font-family: "Jersey10-Regular", monospace;
+  font-size: 3.5em;
+  font-weight: 700;
+  color: var(--brown-orange);
+  letter-spacing: 1px;
+
+  box-shadow:
+    0 clamp(6px, 1vw, 16px) 0 rgba(0, 0, 0, 0.18),
+    inset 0 clamp(8px, 1vw, 16px) 0 rgba(255, 255, 255, 0.22),
+    inset 0 clamp(-16px, -1vw, -8px) 0 rgba(0, 0, 0, 0.1);
+
   cursor: pointer;
-
-  width: calc(6 * min(1vw, 1.40625vh));
-  height: calc(6 * min(1vw, 1.40625vh));
-
-  display: grid;
-  place-items: center;
-
+  outline: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
 
-.menuBtn img {
-  width: 100%;
-  display: block;
-
-  user-select: none;
-  pointer-events: none;
-
-  filter: drop-shadow(0 0 0 #a43a2a);
-}
-
-.menuBtn:hover img {
+.btnMenu:hover {
   transform: scale(1.04);
 }
 
-.menuBtn:active img {
-  transform: translateY(2px) scale(0.98);
+.btnMenu:active {
+  transform: translateY(3px);
+  box-shadow:
+    0 7px 0 rgba(0, 0, 0, 0.18),
+    inset 0 12px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -12px 0 rgba(0, 0, 0, 0.12);
 }
 
-.menuBtn:focus-visible {
+.btnMenu:focus-visible {
   outline: 3px solid rgba(255, 255, 255, 0.75);
   outline-offset: 6px;
-  border-radius: 999px;
 }
 
 /* room 1 */
