@@ -10,7 +10,7 @@ export default function FailPage() {
           <div className="center">
             <h1 className="end-title">You Ran Out of Time</h1>
             <h2 className="end-subtitle">Maybe Next Time!</h2>
-            <button className="btnReturn" onClick={() => navigate("/master-mystery")}>
+            <button className="btnReturn" onClick={() => navigate("/")}>
               Return
             </button>
           </div>

@@ -8,9 +8,9 @@ import FailPage from "./pages/FailPage";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
-        <Route path="/master-mystery" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/Room1" element={<Room1 />} />
         <Route path="/EndPage" element={<EndPage />} />
         <Route path="/FailPage" element={<FailPage />} />
