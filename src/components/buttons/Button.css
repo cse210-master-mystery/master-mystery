@@ -1,41 +1,76 @@
+:root {
+  /* ===== Sizing ===== */
+  --unit: min(1vw, 1.40625vh);
+
+  /* ===== Colors ===== */
+  --color-yellow: #efc331;
+  --color-orange: #f58614;
+  --color-red: #a43a2a;
+  --color-red-dark: #600202;
+  --color-red-mid: #bf0f03;
+  --color-text: #b23b2b;
+
+  /* ===== Typography ===== */
+  --font-primary: "Jersey10-Regular", monospace;
+  --font-weight-bold: 700;
+  --text-shadow-light: 0px 1px 0px rgba(255, 255, 255, 0.4);
+  --letter-spacing: 1px;
+
+  /* ===== Effects ===== */
+  --transition-fast: 0.1s ease-in-out;
+  --highlight-gradient: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+}
+
+/* ===================================== */
+/* Base Button */
+/* ===================================== */
+
 .btn {
   cursor: pointer;
   outline: none;
   user-select: none;
   position: relative;
   border: none;
-}
 
-.btn-start {
-  width: calc(30 * min(1vw, 1.40625vh));
-  height: calc(10 * min(1vw, 1.40625vh));
-  border-radius: 0.3em;
-  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background-color: #ffd600;
-  border: 0.09em solid #a90900;
-
-  box-shadow:
-    0px 3px 0px #fa3e1f,
-    0px 10px 0px #bf0f03,
-    0px 12px 0px #600202,
-    0px 30px 15px rgba(0, 0, 0, 0.4),
-    inset 0px 3px 0px rgba(255, 255, 255, 0);
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  text-shadow: var(--text-shadow-light);
+  letter-spacing: var(--letter-spacing);
 
   transition:
-    transform 0.1s,
-    box-shadow 0.1s,
-    filter 0.1s;
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    filter var(--transition-fast);
+}
 
-  font-family: "Jersey10-Regular", monospace;
+/* ===================================== */
+/* Start Button */
+/* ===================================== */
+
+.btn-start {
+  width: calc(30 * var(--unit));
+  height: calc(10 * var(--unit));
+  border-radius: 0.3em;
+
+  background-color: var(--color-yellow);
+  border: 0.09em solid var(--color-red);
+
   font-size: 10em;
-  font-weight: 700;
-  color: #b23b2b;
-  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4);
-  letter-spacing: 1px;
+
+  box-shadow:
+    0px 10px 0px var(--color-red-mid),
+    0px 12px 0px var(--color-red-dark),
+    0px 30px 15px rgba(0, 0, 0, 0.4),
+    inset 0px 3px 0px rgba(255, 255, 255, 0);
 }
 
 .btn-start::after {
@@ -45,7 +80,7 @@
   left: 6px;
   right: 6px;
   height: 42%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: var(--highlight-gradient);
   border-radius: 12px 12px 16px 16px;
   pointer-events: none;
 }
@@ -63,36 +98,28 @@
     inset 0px 2px 0px rgba(255, 255, 255, 0.5);
 }
 
+/* ===================================== */
+/* Round Button */
+/* ===================================== */
+
 .btn-round {
-  width: calc(10 * min(1vw, 1.40625vh));
-  height: calc(10 * min(1vw, 1.40625vh));
+  width: calc(10 * var(--unit));
+  height: calc(10 * var(--unit));
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
   overflow: hidden;
+  z-index: 1;
 
-  background: radial-gradient(circle at 50% 10%, #ffea00 0%, #ffd600 60%, #f58614 100%);
-  border: 0.15em solid #a90900;
+  background: radial-gradient(circle at 50% 10%, var(--color-yellow) 60%, var(--color-orange) 100%);
+
+  border: 0.15em solid var(--color-red);
+
+  font-size: 4.5em;
+  line-height: 1;
 
   box-shadow:
     inset 0px -6px 8px rgba(0, 0, 0, 0.2),
     inset 0px 4px 6px rgba(255, 255, 255, 0.6);
-
-  font-family: "Jersey10-Regular", monospace;
-  font-size: 4.5em;
-  font-weight: 700;
-  color: #b23b2b;
-  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4);
-  letter-spacing: 1px;
-  line-height: 1;
-  z-index: 1;
-
-  transition:
-    transform 0.1s ease-in-out,
-    filter 0.1s ease;
 }
 
 .btn-round::before {
@@ -103,7 +130,7 @@
   transform: translateX(-50%);
   width: 70%;
   height: 35%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: var(--highlight-gradient);
   border-radius: 50% 50% 45% 45%;
   z-index: 0;
   pointer-events: none;
