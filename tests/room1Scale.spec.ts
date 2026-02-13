@@ -1,11 +1,9 @@
 import { test, expect } from "@playwright/test";
 
-const BASE_URL = "http://localhost:5173/master-mystery/";
-
 const GAME_RATIO = 1440 / 1024;
 
 async function enterRoom1(page) {
-  await page.goto(BASE_URL);
+  await page.goto("./");
 
   await page.waitForSelector(".btnStart", { timeout: 5000 });
   await page.click(".btnStart");
