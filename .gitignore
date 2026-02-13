@@ -28,5 +28,8 @@ test-results/
 playwright-report/
 playwright/.cache/
 
+# screenshots (playwright)
+tests/screenshots/
+
 # vite+ts
 *.tsbuildinfo
