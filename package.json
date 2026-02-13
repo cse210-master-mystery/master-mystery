@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "format": "prettier -w .",
     "format:check": "prettier -c .",
-    "test": "vitest"
+    "test": "vitest",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@types/react-router-dom": "^5.3.3",
