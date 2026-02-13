@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import lever1img from "../assets/images/lever1.png";
 import lever2img from "../assets/images/lever2.png";
 import bookimg from "../assets/images/book.png";
-import { useEffect, useState } from "react";
+import Keypad from "../components/keypad/keypad";
 
 export default function Room1() {
   const navigate = useNavigate();
   const [now, setNow] = useState(new Date());
+  const [showKeypad, setShowKeypad] = useState(false);
 
   useEffect(() => {
     const id = setInterval(() => setNow(new Date()), 1000);
@@ -17,6 +19,10 @@ export default function Room1() {
     hour: "2-digit",
     minute: "2-digit",
   });
+
+  const handleCorrectCode = () => {
+    setShowKeypad(false);
+  };
   // make event handler for each button to react to click
   return (
     <div className="wrapper">
@@ -24,8 +30,11 @@ export default function Room1() {
         <div className="game-clock">{timeText}</div>
         <div className="room1bkg">
           <img src={lever1img} className="btnlever1" onClick={() => navigate("/end-page")} />
-          <img src={lever2img} className="btnlever2" onClick={() => navigate("/fail-page")} />
+          <img src={lever2img} className="btnlever2" onClick={() => setShowKeypad(true)} />
           <img src={bookimg} className="btnbook" onClick={() => navigate("/")} />
+          {showKeypad && (
+            <Keypad onSuccess={handleCorrectCode} onClose={() => setShowKeypad(false)} />
+          )}
         </div>
         <button className="btnMenu" onClick={() => console.log("menu")} aria-label="Open menu">
           Menu

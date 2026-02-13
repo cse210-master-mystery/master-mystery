@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./keypad.css";
 
 type KeyType = "digit" | "clear" | "enter";
@@ -8,8 +8,12 @@ interface KeyConfig {
     value: string;
     type: KeyType;
 }
+interface KeypadProps {
+  onSuccess: () => void;
+  onClose: () => void;
+}
 
-const CORRECT_CODE = "123";
+const CORRECT_CODE = "503";
 
 const keys: KeyConfig[] = [
     { label: "1", value: "1", type: "digit" },
@@ -26,7 +30,7 @@ const keys: KeyConfig[] = [
     { label: "Enter", value: "enter", type: "enter" },
 ];
 
-const Keypad: React.FC = () => {
+export default function Keypad({ onSuccess, onClose }: KeypadProps) {
     const [value, setValue] = useState<string>("");
     const [message, setMessage] = useState<string>("");
 
@@ -43,10 +47,12 @@ const Keypad: React.FC = () => {
 
             if (value === CORRECT_CODE) {
                 setMessage("CORRECT");
+                setTimeout(() => {
+                    onSuccess(); // close modal + notify parent
+                }, 1500);
+                return;
             } 
-            else {
-                setMessage("INCORRECT");
-            }
+            setMessage("INCORRECT");
 
             setTimeout(() => {
                 setValue("");
@@ -85,24 +91,25 @@ const Keypad: React.FC = () => {
     });
 
     return (
-        <div className="keypad">
-            <div className={`display ${message ? "result" : ""}`}>
-                {message ? message : value.padEnd(3, "_")}
-            </div>
+        <div className="modal-overlay">
+            <div className="modal-content">
+                <div className={`display ${message ? "result" : ""}`}>
+                    {message ? message : value.padEnd(3, "_")}
+                </div>
 
-            <div className="keypad-grid">
-                {keys.map((key) => (
-                <button
-                    key={key.label}
-                    className={`key key-${key.type}`}
-                    onClick={() => handleClick(key)}
-                >
-                    {key.label}
-                </button>
-                ))}
+                <div className="keypad-grid">
+                    {keys.map((key) => (
+                    <button
+                        key={key.label}
+                        className={`key key-${key.type}`}
+                        onClick={() => handleClick(key)}
+                    >
+                        {key.label}
+                    </button>
+                    ))}
+                </div>
+                <button className="close-btn" onClick={onClose}>X</button>
             </div>
         </div>
     );
 };
-
-export default Keypad;
