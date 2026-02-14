@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Room1 from "./pages/Room1";
+import Room2 from "./pages/Room2";
 import EndPage from "./pages/EndPage";
 import FailPage from "./pages/FailPage";
 
@@ -12,6 +13,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/room1" element={<Room1 />} />
+        <Route path="/room2" element={<Room2 />} />
         <Route path="/end-page" element={<EndPage />} />
         <Route path="/fail-page" element={<FailPage />} />
       </Routes>

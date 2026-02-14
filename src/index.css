@@ -206,7 +206,7 @@ body {
 .room1bkg {
   position: absolute;
   inset: 0;
-  background-image: url("./assets/images/room1-background.png");
+  background-image: url("./assets/images/room1/room1-background.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -335,4 +335,105 @@ body {
 
 .btnReturn:active {
   transform: translateY(3px);
+}
+
+/* room 2 */
+.room2bkg {
+  position: absolute;
+  inset: 0;
+  background-image: url("./assets/images/room2/room2-background.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.particlemovment {
+  width: calc(18.2 * min(1vw, 1.40625vh));
+
+  /* location */
+  position: absolute;
+  top: calc(28.3% - (15 * min(1vw, 1.40625vh)) / 2);
+  left: calc(22.5% - (15 * min(1vw, 1.40625vh)) / 2);
+}
+
+.particlemovment:hover {
+  transform: scale(1.04);
+}
+
+.energylvls {
+  width: calc(13.7 * min(1vw, 1.40625vh));
+
+  /* location */
+  position: absolute;
+  top: calc(24.2% - (15 * min(1vw, 1.40625vh)) / 2);
+  left: calc(7.5% - (15 * min(1vw, 1.40625vh)) / 2);
+}
+
+.energylvls:hover {
+  transform: scale(1.04);
+}
+
+.controlconsole {
+  width: calc(18.1 * min(1vw, 1.40625vh));
+
+  /* location */
+  position: absolute;
+  top: calc(57.1% - (15 * min(1vw, 1.40625vh)) / 2);
+  left: calc(20.1% - (15 * min(1vw, 1.40625vh)) / 2);
+}
+
+.controlconsole:hover {
+  transform: scale(1.04);
+}
+
+.plasmaplaque {
+  width: calc(15 * min(1vw, 1.40625vh));
+
+  /* location */
+  position: absolute;
+  top: calc(74.35% - (15 * min(1vw, 1.40625vh)) / 2);
+  left: calc(47% - (15 * min(1vw, 1.40625vh)) / 2);
+}
+
+.plasmaplaque:hover {
+  transform: scale(1.04);
+}
+
+.magnet {
+  width: calc(18.7 * min(1vw, 1.40625vh));
+
+  /* location */
+  position: absolute;
+  top: calc(49.3% - (15 * min(1vw, 1.40625vh)) / 2);
+  left: calc(70.2% - (15 * min(1vw, 1.40625vh)) / 2);
+}
+
+.magnet:hover {
+  transform: scale(1.04);
+}
+
+.energymeter {
+  width: calc(9 * min(1vw, 1.40625vh));
+
+  /* location */
+  position: absolute;
+  top: calc(23.5% - (15 * min(1vw, 1.40625vh)) / 2);
+  left: calc(82% - (15 * min(1vw, 1.40625vh)) / 2);
+}
+
+.energymeter:hover {
+  transform: scale(1.04);
+}
+
+.dectivationpzzle {
+  width: calc(13.6 * min(1vw, 1.40625vh));
+
+  /* location */
+  position: absolute;
+  top: calc(17.44% - (15 * min(1vw, 1.40625vh)) / 2);
+  left: calc(90.99% - (15 * min(1vw, 1.40625vh)) / 2);
+}
+
+.dectivationpzzle:hover {
+  transform: scale(1.04);
 }
