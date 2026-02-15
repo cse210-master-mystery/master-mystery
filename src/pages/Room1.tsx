@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import lever1img from "../assets/images/lever1.png";
-import lever2img from "../assets/images/lever2.png";
-import bookimg from "../assets/images/book.png";
+import lever1img from "../assets/images/room1/lever1.png";
+import lever2img from "../assets/images/room1/lever2.png";
+import bookimg from "../assets/images/room1/book.png";
 import Keypad from "../components/keypad/keypad";
 
 export default function Room1() {
@@ -31,7 +31,7 @@ export default function Room1() {
         <div className="room1bkg">
           <img src={lever1img} className="btnlever1" onClick={() => navigate("/end-page")} />
           <img src={lever2img} className="btnlever2" onClick={() => setShowKeypad(true)} />
-          <img src={bookimg} className="btnbook" onClick={() => navigate("/")} />
+          <img src={bookimg} className="btnbook" onClick={() => navigate("/room2")} />
           {showKeypad && (
             <Keypad onSuccess={handleCorrectCode} onClose={() => setShowKeypad(false)} />
           )}
