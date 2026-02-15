@@ -15,7 +15,7 @@ async function getGameSize(page) {
 
 test("maintains aspect ratio on desktop", async ({ page }) => {
   await page.setViewportSize({ width: 1600, height: 900 });
-  await page.goto("./");
+  await page.goto("http://localhost:5173/master-mystery/");
 
   const { width, height } = await getGameSize(page);
 
@@ -26,7 +26,7 @@ test("maintains aspect ratio on desktop", async ({ page }) => {
 
 test("scales by height when screen is tall", async ({ page }) => {
   await page.setViewportSize({ width: 800, height: 1400 });
-  await page.goto("./");
+  await page.goto("http://localhost:5173/master-mystery/");
 
   const { width, height } = await getGameSize(page);
 
@@ -36,7 +36,7 @@ test("scales by height when screen is tall", async ({ page }) => {
 
 test("scales by width when screen is wide", async ({ page }) => {
   await page.setViewportSize({ width: 2000, height: 600 });
-  await page.goto("./");
+  await page.goto("http://localhost:5173/master-mystery/");
 
   const { width, height } = await getGameSize(page);
 
@@ -46,7 +46,7 @@ test("scales by width when screen is wide", async ({ page }) => {
 
 test("uses min dimension for scale", async ({ page }) => {
   await page.setViewportSize({ width: 1000, height: 500 });
-  await page.goto("./");
+  await page.goto("http://localhost:5173/master-mystery/");
 
   const { width } = await getGameSize(page);
 
@@ -58,7 +58,7 @@ test("uses min dimension for scale", async ({ page }) => {
 
 test("handles very small screens", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 480 });
-  await page.goto("./");
+  await page.goto("http://localhost:5173/master-mystery/");
 
   const { width, height } = await getGameSize(page);
 
@@ -68,7 +68,7 @@ test("handles very small screens", async ({ page }) => {
 
 test("handles very large screens", async ({ page }) => {
   await page.setViewportSize({ width: 3840, height: 2160 });
-  await page.goto("./");
+  await page.goto("http://localhost:5173/master-mystery/");
 
   const { width, height } = await getGameSize(page);
 
@@ -78,7 +78,7 @@ test("handles very large screens", async ({ page }) => {
 
 test("maintains aspect ratio on medium screens", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 720 });
-  await page.goto("./");
+  await page.goto("http://localhost:5173/master-mystery/");
 
   const { width, height } = await getGameSize(page);
 

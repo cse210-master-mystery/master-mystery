@@ -15,13 +15,25 @@ export default function Room2() {
     <div className="wrapper">
       <div className="game-scale">
         <div className="room2bkg">
-          <img src={particlemovment} className="particlemovment" onClick={() => navigate("/end-page")} />
+          <img
+            src={particlemovment}
+            className="particlemovment"
+            onClick={() => navigate("/end-page")}
+          />
           <img src={energylvls} className="energylvls" onClick={() => navigate("/end-page")} />
-          <img src={controlconsole} className="controlconsole" onClick={() => navigate("/end-page")} />
+          <img
+            src={controlconsole}
+            className="controlconsole"
+            onClick={() => navigate("/end-page")}
+          />
           <img src={plasmaplaque} className="plasmaplaque" onClick={() => navigate("/end-page")} />
           <img src={magnet} className="magnet" onClick={() => navigate("/end-page")} />
           <img src={energymeter} className="energymeter" onClick={() => navigate("/end-page")} />
-          <img src={dectivationpzzle} className="dectivationpzzle" onClick={() => navigate("/end-page")} />
+          <img
+            src={dectivationpzzle}
+            className="dectivationpzzle"
+            onClick={() => navigate("/end-page")}
+          />
         </div>
         <button className="btnMenu" onClick={() => console.log("menu")} aria-label="Open menu">
           Menu
