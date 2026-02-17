@@ -6,6 +6,7 @@ import bookimg from "../assets/images/room1/book.png";
 import Keypad from "../components/keypad/keypad";
 import MenuButton from "../components/buttons/MenuButton";
 import HintButton from "../components/buttons/HintButton";
+import Modal from "../components/modal/Modal";
 
 export default function Room1() {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ export default function Room1() {
   // 15 minutes countdown
   const [remaining, setRemaining] = useState(15 * 60);
   const [showKeypad, setShowKeypad] = useState(false);
+  const [timeUp, setTimeUp] = useState(false);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -27,6 +29,13 @@ export default function Room1() {
 
     return () => clearInterval(id);
   }, []);
+
+  // when countdown ends, show message
+  useEffect(() => {
+    if (remaining === 0) {
+      setTimeUp(true);
+    }
+  }, [remaining]);
 
   const minutes = Math.floor(remaining / 60);
   const seconds = remaining % 60;
@@ -57,6 +66,13 @@ export default function Room1() {
             <Keypad onSuccess={handleCorrectCode} onClose={() => setShowKeypad(false)} />
           )}
         </div>
+
+        <Modal isOpen={timeUp} onClose={() => navigate("/")}>
+          <p>You are running out of time.</p>
+          <button type="button" onClick={() => navigate("/")}>
+            Return to Home
+          </button>
+        </Modal>
       </div>
     </div>
   );
