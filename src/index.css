@@ -201,6 +201,27 @@ body {
   outline-offset: 6px;
 }
 
+.menu-button {
+  position: absolute;
+  top: calc(1.5 * min(1vw, 1.40625vh));
+  right: calc(1.5 * min(1vw, 1.40625vh));
+  z-index: 250;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(1 * min(1vw, 1.40625vh));
+}
+
+.hint-button {
+  position: absolute;
+  top: calc(1.5 * min(1vw, 1.40625vh));
+  left: calc(1.5 * min(1vw, 1.40625vh));
+  z-index: 250;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(1 * min(1vw, 1.40625vh));
+}
 /* room 1 */
 
 .room1bkg {
