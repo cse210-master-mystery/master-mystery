@@ -2,13 +2,16 @@ import { test, expect } from "@playwright/test";
 
 const GAME_RATIO = 1440 / 1024;
 
-async function enterRoom1(page) {
+async function enterRoom2(page) {
   await page.goto("http://localhost:5173/master-mystery/");
 
   await page.waitForSelector(".btnStart", { timeout: 5000 });
   await page.click(".btnStart");
 
   await page.waitForSelector(".room1bkg", { timeout: 5000 });
+  await page.click(".btnbook");
+
+  await page.waitForSelector(".room2bkg", { timeout: 5000 });
 }
 
 async function rect(page, selector) {
@@ -40,7 +43,7 @@ async function relativeToGame(page, selector) {
 }
 
 test("game preserves aspect ratio at different screen sizes", async ({ page }) => {
-  await enterRoom1(page);
+  await enterRoom2(page);
 
   await page.setViewportSize({ width: 1600, height: 900 });
 
@@ -60,7 +63,7 @@ test("game preserves aspect ratio at different screen sizes", async ({ page }) =
 });
 
 test("room 1 elements scale proportionally with the game frame", async ({ page }) => {
-  await enterRoom1(page);
+  await enterRoom2(page);
 
   // disable hover transforms which can cause small position changes and test instability
   await page.addStyleTag({
@@ -72,9 +75,13 @@ test("room 1 elements scale proportionally with the game frame", async ({ page }
   await page.setViewportSize({ width: 1440, height: 1024 });
 
   const baseline = {
-    lever1: await relativeToGame(page, ".btnlever1"),
-    lever2: await relativeToGame(page, ".btnlever2"),
-    book: await relativeToGame(page, ".btnbook"),
+    particlemovment: await relativeToGame(page, ".particlemovment"),
+    energylvls: await relativeToGame(page, ".energylvls"),
+    controlconsole: await relativeToGame(page, ".controlconsole"),
+    plasmaplaque: await relativeToGame(page, ".plasmaplaque"),
+    magnet: await relativeToGame(page, ".magnet"),
+    energymeter: await relativeToGame(page, ".energymeter"),
+    dectivationpzzle: await relativeToGame(page, ".dectivationpzzle"),
   };
 
   const viewports = [
@@ -90,14 +97,18 @@ test("room 1 elements scale proportionally with the game frame", async ({ page }
     await page.setViewportSize(viewport);
 
     const current = {
-      lever1: await relativeToGame(page, ".btnlever1"),
-      lever2: await relativeToGame(page, ".btnlever2"),
-      book: await relativeToGame(page, ".btnbook"),
+      particlemovment: await relativeToGame(page, ".particlemovment"),
+      energylvls: await relativeToGame(page, ".energylvls"),
+      controlconsole: await relativeToGame(page, ".controlconsole"),
+      plasmaplaque: await relativeToGame(page, ".plasmaplaque"),
+      magnet: await relativeToGame(page, ".magnet"),
+      energymeter: await relativeToGame(page, ".energymeter"),
+      dectivationpzzle: await relativeToGame(page, ".dectivationpzzle"),
     };
 
     // screenshot in screenshot dir
     await page.screenshot({
-      path: `tests/screenshots/room1-${viewport.width}x${viewport.height}.png`,
+      path: `tests/screenshots/room2-${viewport.width}x${viewport.height}.png`,
     });
 
     for (const key of Object.keys(baseline)) {
