@@ -238,6 +238,51 @@ body {
   transform: scale(1.04);
 }
 
+.btnlever1,
+.btnlever2 {
+  z-index: 10;
+}
+
+.case1PressurePlaque {
+  position: absolute;
+  top: calc(14% - (4 * min(1vw, 1.40625vh)) / 2);
+  left: calc(80% - (18 * min(1vw, 1.40625vh)) / 2);
+  width: calc(18 * min(1vw, 1.40625vh));
+  padding: calc(0.35 * min(1vw, 1.40625vh)) calc(0.65 * min(1vw, 1.40625vh));
+  border: 4px solid #6d3a1a;
+  border-radius: calc(0.5 * min(1vw, 1.40625vh));
+  background: #f4cd79;
+  color: #2e1305;
+  font-size: 2.2em;
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+  box-shadow: 0 5px 0 rgba(53, 24, 12, 0.32);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.imgcase1 {
+  width: calc(18 * min(1vw, 1.40625vh));
+
+  top: calc(29% - (15 * min(1vw, 1.40625vh)) / 2);
+  left: calc(70% - (15 * min(1vw, 1.40625vh)) / 2);
+}
+
+.imgcase2 {
+  width: calc(18 * min(1vw, 1.40625vh));
+
+  top: calc(29% - (15 * min(1vw, 1.40625vh)) / 2);
+  left: calc(88% - (15 * min(1vw, 1.40625vh)) / 2);
+}
+
+.imgcase1,
+.imgcase2 {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
 .btnbook {
   width: calc(34 * min(1vw, 1.40625vh));
 
@@ -248,6 +293,20 @@ body {
 }
 
 .btnbook:hover {
+  transform: scale(1.04);
+}
+
+.btndoor {
+  width: calc(20 * min(1vw, 1.40625vh));
+
+  /* location */
+  position: absolute;
+  top: calc(60% - (15 * min(1vw, 1.40625vh)) / 2);
+  left: calc(92% - (15 * min(1vw, 1.40625vh)) / 2);
+  z-index: 10;
+}
+
+.btndoor:hover {
   transform: scale(1.04);
 }
 
