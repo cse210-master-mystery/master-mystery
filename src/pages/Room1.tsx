@@ -44,8 +44,6 @@ export default function Room1() {
     }
   };
 
-  const hasReachedCase1Target = case1Pressure >= CASE1_TARGET_PRESSURE;
-
   const handleCase1LeverClick = () => {
     setCase1Pressure((currentPressure) => {
       if (currentPressure >= CASE1_TARGET_PRESSURE) {
