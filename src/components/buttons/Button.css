@@ -50,6 +50,7 @@
     transform var(--transition-fast),
     box-shadow var(--transition-fast),
     filter var(--transition-fast);
+  font-size: var(--btn-font-size, inherit);
 }
 
 /* ===================================== */
@@ -59,29 +60,31 @@
 .btn-start {
   width: calc(30 * var(--unit));
   height: calc(10 * var(--unit));
-  border-radius: 0.3em;
+
+  border-radius: calc(10 * var(--unit));
 
   background-color: var(--color-yellow);
-  border: 0.09em solid var(--color-red);
 
-  font-size: 10em;
+  border: calc(0.3 * var(--unit)) solid var(--color-red);
+
+  --btn-font-size: clamp(16px, calc(4 * var(--unit)), 48px);
 
   box-shadow:
-    0px 10px 0px var(--color-red-mid),
-    0px 12px 0px var(--color-red-dark),
-    0px 30px 15px rgba(0, 0, 0, 0.4),
-    inset 0px 3px 0px rgba(255, 255, 255, 0);
+    0px calc(1 * var(--unit)) 0px var(--color-red-mid),
+    0px calc(1.2 * var(--unit)) 0px var(--color-red-dark),
+    0px calc(3 * var(--unit)) calc(1.5 * var(--unit)) rgba(0, 0, 0, 0.4);
 }
 
 .btn-start::after {
   content: "";
   position: absolute;
-  top: 6px;
-  left: 6px;
-  right: 6px;
+  top: calc(0.6 * var(--unit));
+  left: calc(0.6 * var(--unit));
+  right: calc(0.6 * var(--unit));
   height: 42%;
   background: var(--highlight-gradient);
-  border-radius: 12px 12px 16px 16px;
+  border-radius: calc(10 * var(--unit)) calc(10 * var(--unit)) calc(1 * var(--unit))
+    calc(1 * var(--unit));
   pointer-events: none;
 }
 
@@ -114,7 +117,7 @@
 
   border: 0.15em solid var(--color-red);
 
-  font-size: 4.5em;
+  --btn-font-size: 4.5em;
   line-height: 1;
 
   box-shadow:
