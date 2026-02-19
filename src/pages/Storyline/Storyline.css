@@ -22,10 +22,9 @@
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-/* 
+  /* 
   animation: fadeIn 0.8s; */
 }
-
 
 .story-card-vibrate {
   background-color: #1a0000;
