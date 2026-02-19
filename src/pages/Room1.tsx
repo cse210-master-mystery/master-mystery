@@ -4,6 +4,7 @@ import lever1img from "../assets/images/room1/lever1.png";
 import lever2img from "../assets/images/room1/lever2.png";
 import case1img from "../assets/images/room1/case1.png";
 import case2img from "../assets/images/room1/case2.png";
+import doorimg from "../assets/images/room1/door.png";
 import bookimg from "../assets/images/room1/book.png";
 import Keypad from "../components/keypad/keypad";
 
@@ -23,6 +24,7 @@ export default function Room1() {
   const navigate = useNavigate();
   const [now, setNow] = useState(new Date());
   const [case1Pressure, setCase1Pressure] = useState(CASE1_START_PRESSURE);
+  const [isCase1Melted, setIsCase1Melted] = useState(false);
   const [showKeypad, setShowKeypad] = useState(false);
 
   useEffect(() => {
@@ -37,6 +39,9 @@ export default function Room1() {
 
   const handleCorrectCode = () => {
     setShowKeypad(false);
+    if (case1Pressure >= CASE1_TARGET_PRESSURE) {
+      setIsCase1Melted(true);
+    }
   };
 
   const hasReachedCase1Target = case1Pressure >= CASE1_TARGET_PRESSURE;
@@ -65,15 +70,16 @@ export default function Room1() {
             Pressure: {case1Pressure} atm
           </div>
           <img
-            src={hasReachedCase1Target ? case2img : case1img}
+            src={isCase1Melted ? case2img : case1img}
             className="imgcase1"
             alt="Case 1 container"
           />
           <img
-            src={hasReachedCase1Target ? case2img : case1img}
+            src={isCase1Melted ? case2img : case1img}
             className="imgcase2"
             alt="Case 1 container"
           />
+          {isCase1Melted && <img src={doorimg} className="btndoor" alt="Exit door" />}
           <img src={bookimg} className="btnbook" onClick={() => navigate("/room2")} />
           {showKeypad && (
             <Keypad onSuccess={handleCorrectCode} onClose={() => setShowKeypad(false)} />
