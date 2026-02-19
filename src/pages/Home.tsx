@@ -24,7 +24,11 @@ export default function Home() {
           <div className="center">
             <h1 className="title">Matter Mystery</h1>
 
-            <Button className="btnStart" onClick={() => navigate("/room1")}>
+            <Button
+              className="btnStart"
+              fontSize="clamp(16px, calc(5 * var(--unit)), 200px)"
+              onClick={() => navigate("/story")}
+            >
               Start
             </Button>
           </div>
