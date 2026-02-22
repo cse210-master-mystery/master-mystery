@@ -43,9 +43,14 @@
   text-align: center;
 }
 
-.display.result {
+.display.correct {
   letter-spacing: 0px;
-  color: blue;
+  color: green;
+}
+
+.display.incorrect {
+  letter-spacing: 0px;
+  color: red;
 }
 
 .keypad-grid {
