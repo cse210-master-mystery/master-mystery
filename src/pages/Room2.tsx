@@ -7,6 +7,8 @@ import magnet from "../assets/images/room2/magnet.png";
 import energymeter from "../assets/images/room2/energymeter.png";
 import dectivationpzzle from "../assets/images/room2/dectivationpzzle.png";
 import Timer from "../components/timer/timer";
+import HintButton from "../components/buttons/HintButton";
+import MenuButton from "../components/buttons/MenuButton";
 
 export default function Room2() {
   const navigate = useNavigate();
@@ -39,9 +41,12 @@ export default function Room2() {
             onClick={() => navigate("/end-page")}
           />
         </div>
-        <button className="btnMenu" onClick={() => console.log("menu")} aria-label="Open menu">
-          Menu
-        </button>
+        <div className="menu-button">
+            <MenuButton />
+          </div>
+          <div className="hint-button">
+            <HintButton hint="..." />
+          </div>
       </div>
     </div>
   );
