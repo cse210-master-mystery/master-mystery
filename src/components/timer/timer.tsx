@@ -29,13 +29,12 @@ export default function Timer({
   const [showExpiredModal, setShowExpiredModal] = useState(false);
 
   useEffect(() => {
-    setRemaining(initialSeconds);
-
     const id = window.setInterval(() => {
       setRemaining((prev) => {
         const next = prev - 1;
         if (next <= 0) {
           window.clearInterval(id);
+          queueMicrotask(() => setShowExpiredModal(true));
           return 0;
         }
         return next;
@@ -44,13 +43,6 @@ export default function Timer({
 
     return () => window.clearInterval(id);
   }, [initialSeconds]);
-
-  // When countdown reaches 0 (and was actually counting down), show modal.
-  useEffect(() => {
-    if (remaining === 0 && initialSeconds > 0) {
-      setShowExpiredModal(true);
-    }
-  }, [remaining, initialSeconds]);
 
   const handleConfirmExpired = () => {
     setShowExpiredModal(false);

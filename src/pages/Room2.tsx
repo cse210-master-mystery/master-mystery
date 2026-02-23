@@ -42,11 +42,11 @@ export default function Room2() {
           />
         </div>
         <div className="menu-button">
-            <MenuButton />
-          </div>
-          <div className="hint-button">
-            <HintButton hint="..." />
-          </div>
+          <MenuButton />
+        </div>
+        <div className="hint-button">
+          <HintButton hint="..." />
+        </div>
       </div>
     </div>
   );

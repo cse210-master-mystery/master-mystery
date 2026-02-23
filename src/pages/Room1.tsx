@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import lever1img from "../assets/images/room1/lever1.png";
 import lever2img from "../assets/images/room1/lever2.png";
 import bookimg from "../assets/images/room1/book.png";
@@ -7,7 +7,6 @@ import Keypad from "../components/keypad/keypad";
 import Timer from "../components/timer/timer";
 import HintButton from "../components/buttons/HintButton";
 import MenuButton from "../components/buttons/MenuButton";
-
 
 export default function Room1() {
   const navigate = useNavigate();
@@ -32,11 +31,11 @@ export default function Room1() {
           )}
         </div>
         <div className="menu-button">
-            <MenuButton />
-          </div>
-          <div className="hint-button">
-            <HintButton hint="..." />
-          </div>
+          <MenuButton />
+        </div>
+        <div className="hint-button">
+          <HintButton hint="..." />
+        </div>
       </div>
     </div>
   );

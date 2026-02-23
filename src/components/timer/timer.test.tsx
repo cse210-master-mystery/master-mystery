@@ -41,35 +41,37 @@ describe("Timer", () => {
     expect(screen.getByText("02:02")).toBeInTheDocument();
   });
 
-  it("shows expired modal when countdown reaches zero, calls onExpire when user clicks OK", () => {
+  it("shows expired modal when countdown reaches zero, calls onExpire when user clicks OK", async () => {
     const onExpire = vi.fn();
     render(<Timer initialSeconds={2} onExpire={onExpire} />);
 
     expect(onExpire).not.toHaveBeenCalled();
     expect(screen.queryByText(/You are running out of time/)).not.toBeInTheDocument();
 
-    act(() => {
+    await act(async () => {
       vi.advanceTimersByTime(2000);
+      await Promise.resolve();
     });
 
     expect(screen.getByText("You are running out of time.")).toBeInTheDocument();
-    const okButton = screen.getByRole("button", { name: /^OK$/i });
-    expect(okButton).toBeInTheDocument();
+    const confirmButton = screen.getByRole("button", { name: /return to home/i });
+    expect(confirmButton).toBeInTheDocument();
     expect(onExpire).not.toHaveBeenCalled();
 
     act(() => {
-      fireEvent.click(okButton);
+      fireEvent.click(confirmButton);
     });
 
     expect(onExpire).toHaveBeenCalledTimes(1);
   });
 
-  it("shows 00:00 after expiry", () => {
+  it("shows 00:00 after expiry", async () => {
     render(<Timer initialSeconds={1} onExpire={() => {}} />);
     expect(screen.getByText("00:01")).toBeInTheDocument();
 
-    act(() => {
+    await act(async () => {
       vi.advanceTimersByTime(1000);
+      await Promise.resolve();
     });
     expect(screen.getByText("00:00")).toBeInTheDocument();
   });
