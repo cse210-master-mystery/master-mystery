@@ -6,14 +6,18 @@ import plasmaplaque from "../assets/images/room2/plasmaplaque.png";
 import magnet from "../assets/images/room2/magnet.png";
 import energymeter from "../assets/images/room2/energymeter.png";
 import dectivationpzzle from "../assets/images/room2/dectivationpzzle.png";
+import Timer from "../components/timer/timer";
 
 export default function Room2() {
   const navigate = useNavigate();
-
+  const handleTimerExpire = () => {
+    navigate("/");
+  };
   // make event handler for each button to react to click
   return (
     <div className="wrapper">
       <div className="game-scale">
+        <Timer initialSeconds={15} onExpire={handleTimerExpire} />
         <div className="room2bkg">
           <img
             src={particlemovment}
