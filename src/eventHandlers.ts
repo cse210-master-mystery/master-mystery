@@ -4,7 +4,7 @@ type PopupPayload<T> = {
   value: T;
 };
 
-export function handleButtonEvent(
+export function handleButtonEvent<T>(
   eventType: string,
   payload: NavigatePayload | PopupPayload<T>,
   navigate?: (route: string) => void,
