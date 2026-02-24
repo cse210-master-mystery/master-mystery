@@ -1,3 +1,5 @@
+import "./popup.css";
+
 interface PopupProps {
   imageSrc: string;
   alt?: string;
@@ -6,11 +8,11 @@ interface PopupProps {
 
 export default function Popup({ imageSrc, alt = "Popup image", onClose }: PopupProps) {
   return (
-    <div className="modal-overlay">
-      <div className="modal-content image-popup">
+    <div className="popup-overlay">
+      <div className="popup-content">
         <img src={imageSrc} alt={alt} className="popup-image" />
 
-        <button className="close-btn" onClick={onClose}>
+        <button className="popup-close" onClick={onClose}>
           X
         </button>
       </div>
