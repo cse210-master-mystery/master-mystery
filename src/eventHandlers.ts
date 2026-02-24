@@ -1,9 +1,12 @@
 type NavigatePayload = string;
-type PopupPayload = { setState: (val: any) => void; value: any };
+type PopupPayload<T> = {
+  setState: (val: T) => void;
+  value: T;
+};
 
 export function handleButtonEvent(
   eventType: string,
-  payload: NavigatePayload | PopupPayload,
+  payload: NavigatePayload | PopupPayload<T>,
   navigate?: (route: string) => void,
 ) {
   switch (eventType) {
@@ -16,10 +19,10 @@ export function handleButtonEvent(
     case "popup":
       if (
         payload &&
-        typeof payload.setState === "function" &&
-        typeof payload.value !== "undefined"
+        typeof (payload as PopupPayload<T>).setState === "function" &&
+        typeof (payload as PopupPayload<T>).value !== "undefined"
       ) {
-        payload.setState(payload.value);
+        (payload as PopupPayload<T>).setState((payload as PopupPayload<T>).value);
       }
       break;
 
