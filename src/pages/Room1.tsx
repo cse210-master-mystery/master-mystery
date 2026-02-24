@@ -85,7 +85,7 @@ export default function Room1() {
               onClick={() => navigate("/room2")}
             />
           )}
-          <img src={bookimg} className="btnbook" onClick={() => navigate("/room2")} />
+          <img src={bookimg} className="btnbook" onClick={() => console.log("book")} />
           {showKeypad && (
             <Keypad onSuccess={handleCorrectCode} onClose={() => setShowKeypad(false)} />
           )}
