@@ -28,6 +28,7 @@ body {
   justify-content: center;
   background-color: white;
   overflow: hidden;
+  position: relative;
 }
 .game-scale {
   width: 1440px;
