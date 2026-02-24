@@ -1,6 +1,9 @@
+type NavigatePayload = string;
+type PopupPayload = { setState: (val: any) => void; value: any };
+
 export function handleButtonEvent(
   eventType: string,
-  payload: any,
+  payload: NavigatePayload | PopupPayload,
   navigate?: (route: string) => void,
 ) {
   switch (eventType) {
