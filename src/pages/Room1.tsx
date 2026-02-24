@@ -77,7 +77,14 @@ export default function Room1() {
             className="imgcase2"
             alt="Case 1 container"
           />
-          {isCase1Melted && <img src={doorimg} className="btndoor" alt="Exit door" onClick={() => navigate("/room2")}/>}
+          {isCase1Melted && (
+            <img
+              src={doorimg}
+              className="btndoor"
+              alt="Exit door"
+              onClick={() => navigate("/room2")}
+            />
+          )}
           <img src={bookimg} className="btnbook" onClick={() => navigate("/room2")} />
           {showKeypad && (
             <Keypad onSuccess={handleCorrectCode} onClose={() => setShowKeypad(false)} />
