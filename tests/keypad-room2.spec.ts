@@ -1,16 +1,14 @@
 import { test, expect } from "@playwright/test";
 
-const LOCALHOST_URL = "http://localhost:5173/master-mystery/";
-
 test.describe("Keypad Component", () => {
   test("initial display shows underscores", async ({ page }) => {
-    await page.goto(`${LOCALHOST_URL}room2`);
+    await page.goto("room2");
     await page.locator(".controlconsole").click();
     await expect(page.locator(".display")).toHaveText("____");
   });
 
   test("allows entering 4 digits", async ({ page }) => {
-    await page.goto(`${LOCALHOST_URL}room2`);
+    await page.goto("room2");
     await page.locator(".controlconsole").click();
 
     await page.getByRole("button", { name: "1" }).click();
@@ -22,7 +20,7 @@ test.describe("Keypad Component", () => {
   });
 
   test("does not allow more than 4 digits", async ({ page }) => {
-    await page.goto(`${LOCALHOST_URL}room2`);
+    await page.goto("room2");
     await page.locator(".controlconsole").click();
 
     await page.getByRole("button", { name: "1" }).click();
@@ -35,7 +33,7 @@ test.describe("Keypad Component", () => {
   });
 
   test("clear button resets display", async ({ page }) => {
-    await page.goto(`${LOCALHOST_URL}room2`);
+    await page.goto("room2");
     await page.locator(".controlconsole").click();
 
     await page.getByRole("button", { name: "1" }).click();
@@ -45,7 +43,7 @@ test.describe("Keypad Component", () => {
   });
 
   test("shows correct message for correct code", async ({ page }) => {
-    await page.goto(`${LOCALHOST_URL}room2`);
+    await page.goto("room2");
     await page.locator(".controlconsole").click();
 
     await page.getByRole("button", { name: "9" }).click();
@@ -58,7 +56,7 @@ test.describe("Keypad Component", () => {
   });
 
   test("shows incorrect message for wrong code", async ({ page }) => {
-    await page.goto(`${LOCALHOST_URL}room2`);
+    await page.goto("room2");
     await page.locator(".controlconsole").click();
 
     await page.getByRole("button", { name: "9" }).click();
@@ -71,7 +69,7 @@ test.describe("Keypad Component", () => {
   });
 
   test("keyboard input works", async ({ page }) => {
-    await page.goto(`${LOCALHOST_URL}room2`);
+    await page.goto("room2");
     await page.locator(".controlconsole").click();
 
     await page.keyboard.press("1");
@@ -82,7 +80,7 @@ test.describe("Keypad Component", () => {
   });
 
   test("shows correct message for keyboard input", async ({ page }) => {
-    await page.goto(`${LOCALHOST_URL}room2`);
+    await page.goto("room2");
     await page.locator(".controlconsole").click();
 
     await page.keyboard.press("9");
@@ -95,7 +93,7 @@ test.describe("Keypad Component", () => {
   });
 
   test("shows incorrect message for keyboard input", async ({ page }) => {
-    await page.goto(`${LOCALHOST_URL}room2`);
+    await page.goto("room2");
     await page.locator(".controlconsole").click();
 
     await page.keyboard.press("9");
