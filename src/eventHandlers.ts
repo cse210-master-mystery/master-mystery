@@ -9,6 +9,8 @@ export function handleButtonEvent<T>(
   payload: NavigatePayload | PopupPayload<T>,
   navigate?: (route: string) => void,
 ) {
+  const popupPayload = payload as PopupPayload<T>;
+
   switch (eventType) {
     case "navigate":
       if (navigate && typeof payload === "string") {
@@ -18,15 +20,17 @@ export function handleButtonEvent<T>(
 
     case "popup":
       if (
-        payload &&
-        typeof (payload as PopupPayload<T>).setState === "function" &&
-        typeof (payload as PopupPayload<T>).value !== "undefined"
+        popupPayload &&
+        typeof popupPayload.setState === "function" &&
+        typeof popupPayload.value !== "undefined"
       ) {
-        (payload as PopupPayload<T>).setState((payload as PopupPayload<T>).value);
+        popupPayload.setState(popupPayload.value);
       }
       break;
 
     default:
+      // write error messge to console if event type is not recognized
+      console.error(`Unhandled event type: ${eventType}`);
       break;
   }
 }
