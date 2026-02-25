@@ -117,7 +117,7 @@
 
   border: 0.15em solid var(--color-red);
 
-  --btn-font-size: 4.5em;
+  font-size: 4em;
   line-height: 1;
 
   box-shadow:
