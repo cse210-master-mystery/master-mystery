@@ -12,7 +12,6 @@
   --scale: min(calc(100vw / 1440), calc(100vh / 1024));
   width: calc(1440 * var(--scale));
   height: calc(1024 * var(--scale));
-
   background-color: var(--color-dark-bg);
   color: var(--color-white);
   text-align: center;
@@ -22,7 +21,6 @@
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-
   transition:
     background-color 0.8s ease,
     color 0.8s ease;
