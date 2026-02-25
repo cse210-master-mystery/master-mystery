@@ -35,10 +35,10 @@ export default function Room1() {
     return () => clearInterval(id);
   }, []);
 
-  const timeText = now.toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+  // const timeText = now.toLocaleTimeString([], {
+  //   hour: "2-digit",
+  //   minute: "2-digit",
+  // });
   const isCase1Melted = case1Pressure >= CASE1_TARGET_PRESSURE;
 
   const handleCorrectCode = () => {
