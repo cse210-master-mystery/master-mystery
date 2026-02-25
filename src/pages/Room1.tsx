@@ -25,6 +25,7 @@ export default function Room1() {
   const [now, setNow] = useState(new Date());
   const [case1Pressure, setCase1Pressure] = useState(CASE1_START_PRESSURE);
   const [isCase1Melted, setIsCase1Melted] = useState(false);
+  const [isDoorUnlocked, setIsDoorUnlocked] = useState(false);
   const [showKeypad, setShowKeypad] = useState(false);
 
   useEffect(() => {
@@ -37,11 +38,15 @@ export default function Room1() {
     minute: "2-digit",
   });
 
-  const handleCorrectCode = () => {
-    setShowKeypad(false);
-    if (case1Pressure >= CASE1_TARGET_PRESSURE) {
+  useEffect(() => {
+    if (case1Pressure >= CASE1_TARGET_PRESSURE && !isCase1Melted) {
       setIsCase1Melted(true);
     }
+  }, [case1Pressure, isCase1Melted]);
+
+  const handleCorrectCode = () => {
+    setIsDoorUnlocked(true);
+    setShowKeypad(false);
   };
 
   const handleCase1LeverClick = () => {
@@ -77,7 +82,7 @@ export default function Room1() {
             className="imgcase2"
             alt="Case 1 container"
           />
-          {isCase1Melted && (
+          {isCase1Melted && isDoorUnlocked && (
             <img
               src={doorimg}
               className="btndoor"
