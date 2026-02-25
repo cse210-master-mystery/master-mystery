@@ -1,11 +1,11 @@
-.story-page-wrapper {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  overflow: hidden;
+:root {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-dark-bg: #111111;
+  --color-danger-bg: #1a0000;
+  --color-danger-text: #ff4444;
+  --color-danger-glow: #ff0000;
+  --color-urgent-text: #ffff00;
 }
 
 .story-card-size {
@@ -13,8 +13,8 @@
   width: calc(1440 * var(--scale));
   height: calc(1024 * var(--scale));
 
-  background-color: #111111;
-  color: white;
+  background-color: var(--color-dark-bg);
+  color: var(--color-white);
   text-align: center;
   padding: calc(40 * var(--scale));
   display: flex;
@@ -22,27 +22,28 @@
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-  /* 
-  animation: fadeIn 0.8s; */
+  
+  transition: background-color 0.8s ease, color 0.8s ease;
 }
 
-.story-card-vibrate {
-  background-color: #1a0000;
+
+.story-card-danger {
+  background-color: var(--color-danger-bg);
 }
 
-.story-card-vibrate .story-text {
-  color: #ff4444;
-  text-shadow: 0 0 calc(10 * var(--scale)) #ff0000;
+.story-card-danger .story-text {
+  color: var(--color-danger-text);
+  text-shadow: 0 0 calc(10 * var(--scale)) var(--color-danger-glow);
 }
 
 .story-card-urgent {
-  background-color: black;
+  background-color: var(--color-black);
 }
 
 .story-card-urgent .story-text {
   font-weight: bold;
   letter-spacing: calc(2 * var(--scale));
-  color: #ffff00;
+  color: var(--color-urgent-text);
 }
 
 .story-text {
@@ -50,13 +51,14 @@
   line-height: 1.5;
   margin-bottom: calc(40 * var(--scale));
   max-width: 80%;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
-/* @keyframes fadeIn {
+@keyframes fadeIn {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
   }
-} */
+}
