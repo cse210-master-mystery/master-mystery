@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import lever1img from "../assets/images/room1/lever1.png";
 import lever2img from "../assets/images/room1/lever2.png";
 import case1img from "../assets/images/room1/case1.png";
@@ -7,6 +7,9 @@ import case2img from "../assets/images/room1/case2.png";
 import doorimg from "../assets/images/room1/door.png";
 import bookimg from "../assets/images/room1/book.png";
 import Keypad from "../components/keypad/keypad";
+import Timer from "../components/timer/timer";
+import HintButton from "../components/buttons/HintButton";
+import MenuButton from "../components/buttons/MenuButton";
 
 const CASE1_START_PRESSURE = 5;
 const CASE1_TARGET_PRESSURE = 503;
@@ -59,7 +62,7 @@ export default function Room1() {
   return (
     <div className="wrapper">
       <div className="game-scale">
-        <div className="game-clock">{timeText}</div>
+        <Timer initialSeconds={15} onExpire={handleTimerExpire} />
         <div className="room1bkg">
           <img src={lever1img} className="btnlever1" onClick={handleCase1LeverClick} />
           <img src={lever2img} className="btnlever2" onClick={() => setShowKeypad(true)} />
@@ -89,9 +92,12 @@ export default function Room1() {
             <Keypad onSuccess={handleCorrectCode} onClose={() => setShowKeypad(false)} />
           )}
         </div>
-        <button className="btnMenu" onClick={() => console.log("menu")} aria-label="Open menu">
-          Menu
-        </button>
+        <div className="menu-button">
+          <MenuButton />
+        </div>
+        <div className="hint-button">
+          <HintButton hint="..." />
+        </div>
       </div>
     </div>
   );
