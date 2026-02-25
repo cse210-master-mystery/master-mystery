@@ -24,7 +24,6 @@ export default function Room1() {
   const navigate = useNavigate();
   const [now, setNow] = useState(new Date());
   const [case1Pressure, setCase1Pressure] = useState(CASE1_START_PRESSURE);
-  const [isCase1Melted, setIsCase1Melted] = useState(false);
   const [isDoorUnlocked, setIsDoorUnlocked] = useState(false);
   const [showKeypad, setShowKeypad] = useState(false);
 
@@ -37,12 +36,7 @@ export default function Room1() {
     hour: "2-digit",
     minute: "2-digit",
   });
-
-  useEffect(() => {
-    if (case1Pressure >= CASE1_TARGET_PRESSURE && !isCase1Melted) {
-      setIsCase1Melted(true);
-    }
-  }, [case1Pressure, isCase1Melted]);
+  const isCase1Melted = case1Pressure >= CASE1_TARGET_PRESSURE;
 
   const handleCorrectCode = () => {
     setIsDoorUnlocked(true);
