@@ -1,6 +1,5 @@
 /* Overlay */
 
-
 .deactivation-overlay {
   position: fixed;
 
@@ -21,9 +20,7 @@
   z-index: 1000;
 }
 
-
 /* Panel */
-
 
 .deactivation-panel {
   position: relative;
@@ -54,9 +51,7 @@
     inset 0 0 calc(20 * var(--scale)) rgba(0, 200, 83, 0.1);
 }
 
-
 /* Close Button */
-
 
 .deactivation-close {
   position: absolute;
@@ -85,9 +80,7 @@
   background: #c0392b;
 }
 
-
 /* Title */
-
 
 .deactivation-title {
   font-family: "Jersey10-Regular", monospace;
@@ -98,9 +91,7 @@
   text-shadow: 0 0 calc(10 * var(--scale)) rgba(239, 195, 49, 0.3);
 }
 
-
 /* Metrics Row */
-
 
 .deactivation-metrics {
   display: flex;
@@ -109,9 +100,7 @@
   justify-content: center;
 }
 
-
 /* Individual Metric Button */
-
 
 .deactivation-metric {
   display: flex;
@@ -151,9 +140,7 @@
   transform: scale(0.95);
 }
 
-
 /* Metric Icon */
-
 
 .deactivation-metric__icon {
   font-size: 5em;
@@ -165,9 +152,7 @@
   filter: grayscale(0.8) brightness(0.5);
 }
 
-
 /* Metric Label */
-
 
 .deactivation-metric__label {
   font-size: 2.2em;
@@ -179,9 +164,7 @@
   color: #666;
 }
 
-
 /* Metric Status */
-
 
 .deactivation-metric__status {
   font-size: 1.8em;
@@ -203,9 +186,7 @@
   color: #999;
 }
 
-
 /* Result Message */
-
 
 .deactivation-result {
   font-family: "Jersey10-Regular", monospace;
@@ -228,9 +209,7 @@
   text-shadow: 0 0 calc(15 * var(--scale)) rgba(255, 82, 82, 0.5);
 }
 
-
 /* Submit Button */
-
 
 .deactivation-submit {
   font-family: "Jersey10-Regular", monospace;
@@ -271,9 +250,7 @@
   filter: none;
 }
 
-
 /* Hover Animations - Electricity (buzz/spark) */
-
 
 @keyframes electricity-buzz {
   0%,
@@ -353,9 +330,7 @@
   animation: electricity-buzz 0.3s infinite;
 }
 
-
 /* Hover Animations - Magnetism (attract/pull) */
-
 
 @keyframes magnet-pull {
   0%,
@@ -402,9 +377,7 @@
   animation: magnet-pull 1.2s ease-in-out infinite;
 }
 
-
 /* Hover Animations - Heat (glow/radiate) */
-
 
 @keyframes heat-glow {
   0%,
