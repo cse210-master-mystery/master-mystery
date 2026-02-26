@@ -27,7 +27,7 @@ function getRandomPressureIncrease() {
 
 export default function Room1() {
   const navigate = useNavigate();
-  // const [now, setNow] = useState(new Date());
+  const [now, setNow] = useState(new Date());
   const [case1Pressure, setCase1Pressure] = useState(CASE1_START_PRESSURE);
   const [isDoorUnlocked, setIsDoorUnlocked] = useState(false);
   const [showKeypad, setShowKeypad] = useState(false);
