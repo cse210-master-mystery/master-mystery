@@ -7,9 +7,11 @@ import case2img from "../assets/images/room1/case2.png";
 import doorimg from "../assets/images/room1/door.png";
 import bookimg from "../assets/images/room1/book.png";
 import Keypad from "../components/keypad/keypad";
+import { handleButtonEvent } from "../eventHandlers";
 import Timer from "../components/timer/timer";
 import HintButton from "../components/buttons/HintButton";
 import MenuButton from "../components/buttons/MenuButton";
+import { useEffect } from "react";
 
 const CASE1_START_PRESSURE = 5;
 const CASE1_TARGET_PRESSURE = 503;
@@ -29,16 +31,16 @@ export default function Room1() {
   const [case1Pressure, setCase1Pressure] = useState(CASE1_START_PRESSURE);
   const [isDoorUnlocked, setIsDoorUnlocked] = useState(false);
   const [showKeypad, setShowKeypad] = useState(false);
+  const handleTimerExpire = () => {
+    navigate("/");
+  };
 
-  // useEffect(() => {
-  //   const id = setInterval(() => setNow(new Date()), 1000);
-  //   return () => clearInterval(id);
-  // }, []);
+  useEffect(() => {
+    console.log(now); // Log the value of now when timer starts
+    const id = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
 
-  // const timeText = now.toLocaleTimeString([], {
-  //   hour: "2-digit",
-  //   minute: "2-digit",
-  // });
   const isCase1Melted = case1Pressure >= CASE1_TARGET_PRESSURE;
 
   const handleCorrectCode = () => {
@@ -62,10 +64,19 @@ export default function Room1() {
   return (
     <div className="wrapper">
       <div className="game-scale">
-        <Timer initialSeconds={15} onExpire={handleTimerExpire} />
+        <Timer initialSeconds={900} onExpire={handleTimerExpire} />
         <div className="room1bkg">
           <img src={lever1img} className="btnlever1" onClick={handleCase1LeverClick} />
-          <img src={lever2img} className="btnlever2" onClick={() => setShowKeypad(true)} />
+          <img
+            src={lever2img}
+            className="btnlever2"
+            onClick={() =>
+              handleButtonEvent("popup", {
+                setState: setShowKeypad,
+                value: true,
+              })
+            }
+          />
           <div className="case1PressurePlaque" aria-live="polite">
             Pressure: {case1Pressure} atm
           </div>
