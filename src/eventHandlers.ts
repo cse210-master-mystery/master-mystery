@@ -1,16 +1,22 @@
+import type { Room1Action } from "./room1events";
+
 type NavigatePayload = string;
+
 type PopupPayload<T> = {
   setState: (val: T) => void;
   value: T;
 };
 
+type GamePayload = {
+  dispatch?: React.Dispatch<Room1Action>;
+  action?: Room1Action;
+};
+
 export function handleButtonEvent<T>(
   eventType: string,
-  payload: NavigatePayload | PopupPayload<T>,
+  payload: NavigatePayload | PopupPayload<T> | GamePayload,
   navigate?: (route: string) => void,
 ) {
-  const popupPayload = payload as PopupPayload<T>;
-
   switch (eventType) {
     case "navigate":
       if (navigate && typeof payload === "string") {
@@ -19,17 +25,20 @@ export function handleButtonEvent<T>(
       break;
 
     case "popup":
-      if (
-        popupPayload &&
-        typeof popupPayload.setState === "function" &&
-        typeof popupPayload.value !== "undefined"
-      ) {
+      const popupPayload = payload as PopupPayload<T>;
+      if (popupPayload && typeof popupPayload.setState === "function") {
         popupPayload.setState(popupPayload.value);
       }
       break;
 
+    case "room1":
+      const gamePayload = payload as GamePayload;
+      if (gamePayload.dispatch && gamePayload.action) {
+        gamePayload.dispatch(gamePayload.action);
+      }
+      break;
+
     default:
-      // write error messge to console if event type is not recognized
       console.error(`Unhandled event type: ${eventType}`);
       break;
   }
