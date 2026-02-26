@@ -1,4 +1,5 @@
 import type { Room1Action } from "./room1events";
+import type { Room2Action } from "./room2Events";
 
 type NavigatePayload = string;
 
@@ -7,14 +8,19 @@ type PopupPayload<T> = {
   value: T;
 };
 
-type GamePayload = {
+type GamePayloadrm1 = {
   dispatch?: React.Dispatch<Room1Action>;
   action?: Room1Action;
 };
 
+type GamePayloadrm2 = {
+  dispatch?: React.Dispatch<Room2Action>;
+  action?: Room2Action;
+};
+
 export function handleButtonEvent<T>(
   eventType: string,
-  payload: NavigatePayload | PopupPayload<T> | GamePayload,
+  payload: NavigatePayload | PopupPayload<T> | GamePayloadrm1 | GamePayloadrm2,
   navigate?: (route: string) => void,
 ) {
   switch (eventType) {
@@ -32,9 +38,16 @@ export function handleButtonEvent<T>(
       break;
 
     case "room1":
-      const gamePayload = payload as GamePayload;
+      const gamePayload = payload as GamePayloadrm1;
       if (gamePayload.dispatch && gamePayload.action) {
         gamePayload.dispatch(gamePayload.action);
+      }
+      break;
+
+    case "room2":
+      const gamePayload2 = payload as GamePayloadrm2;
+      if (gamePayload2.dispatch && gamePayload2.action) {
+        gamePayload2.dispatch(gamePayload2.action);
       }
       break;
 
