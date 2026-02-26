@@ -11,15 +11,21 @@ import energymeter from "../assets/images/room2/energymeter.png";
 import dectivationpzzle from "../assets/images/room2/dectivationpzzle.png";
 import movePoster from "../assets/images/room2/particlemove.png";
 import relativeEnergy from "../assets/images/room2/relativeenergy.png";
+import Timer from "../components/timer/timer";
+import HintButton from "../components/buttons/HintButton";
+import MenuButton from "../components/buttons/MenuButton";
 
 export default function Room2() {
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState<string | null>(null);
+  const handleTimerExpire = () => {
+    navigate("/");
 
   // make event handler for each button to react to click
   return (
     <div className="wrapper">
       <div className="game-scale">
+        <Timer initialSeconds={15} onExpire={handleTimerExpire} />
         <div className="room2bkg">
           <img
             src={particlemovment}
@@ -58,9 +64,12 @@ export default function Room2() {
           />
           {showPopup && <Popup imageSrc={showPopup} onClose={() => setShowPopup(null)} />}
         </div>
-        <button className="btnMenu" onClick={() => console.log("menu")} aria-label="Open menu">
-          Menu
-        </button>
+        <div className="menu-button">
+          <MenuButton />
+        </div>
+        <div className="hint-button">
+          <HintButton hint="..." />
+        </div>
       </div>
     </div>
   );
