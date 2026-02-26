@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { handleButtonEvent } from "../eventHandlers";
 import { useState } from "react";
 import Popup from "../components/popups/popup";
+import DeactivationPuzzle from "../components/deactivation-puzzle/DeactivationPuzzle";
 import particlemovment from "../assets/images/room2/particlemovmnt.png";
 import energylvls from "../assets/images/room2/energylvls.png";
 import controlconsole from "../assets/images/room2/controlconsole.png";
@@ -18,8 +19,15 @@ import MenuButton from "../components/buttons/MenuButton";
 export default function Room2() {
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState<string | null>(null);
+  const [showDeactivation, setShowDeactivation] = useState(false);
+  const [puzzleSolved, setPuzzleSolved] = useState(false);
   const handleTimerExpire = () => {
     navigate("/");
+  };
+
+  const handleDeactivationSuccess = () => {
+    setPuzzleSolved(true);
+    setShowDeactivation(false);
   };
 
   // make event handler for each button to react to click
@@ -60,10 +68,21 @@ export default function Room2() {
           />
           <img
             src={dectivationpzzle}
-            className="dectivationpzzle"
-            onClick={() => handleButtonEvent("navigate", "/end-page", navigate)}
+            className={`dectivationpzzle ${puzzleSolved ? "dectivationpzzle--solved" : ""}`}
+            onClick={() => {
+              if (!puzzleSolved) {
+                setShowDeactivation(true);
+              }
+            }}
+            data-testid="dectivationpzzle"
           />
           {showPopup && <Popup imageSrc={showPopup} onClose={() => setShowPopup(null)} />}
+          {showDeactivation && (
+            <DeactivationPuzzle
+              onSuccess={handleDeactivationSuccess}
+              onClose={() => setShowDeactivation(false)}
+            />
+          )}
         </div>
         <div className="menu-button">
           <MenuButton />
