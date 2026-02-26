@@ -36,6 +36,7 @@ export default function Room1() {
   };
 
   useEffect(() => {
+    console.log(now); // Log the value of now when timer starts
     const id = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(id);
   }, []);
