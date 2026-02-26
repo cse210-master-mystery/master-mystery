@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Popup from "../components/popups/popup";
 import lever1img from "../assets/images/room1/lever1.png";
 import lever2img from "../assets/images/room1/lever2.png";
 import case1img from "../assets/images/room1/case1.png";
 import case2img from "../assets/images/room1/case2.png";
 import doorimg from "../assets/images/room1/door.png";
 import bookimg from "../assets/images/room1/book.png";
+import bookopen from "../assets/images/room1/bookopen.png";
 import Keypad from "../components/keypad/keypad";
 import { handleButtonEvent } from "../eventHandlers";
 import Timer from "../components/timer/timer";
@@ -30,6 +32,7 @@ export default function Room1() {
   const [now, setNow] = useState(new Date());
   const [case1Pressure, setCase1Pressure] = useState(CASE1_START_PRESSURE);
   const [isDoorUnlocked, setIsDoorUnlocked] = useState(false);
+  const [showPopup, setShowPopup] = useState<string | null>(null);
   const [showKeypad, setShowKeypad] = useState(false);
   const handleTimerExpire = () => {
     navigate("/");
@@ -98,11 +101,12 @@ export default function Room1() {
               onClick={() => navigate("/room2")}
             />
           )}
-          <img src={bookimg} className="btnbook" onClick={() => console.log("book")} />
+          <img src={bookimg} className="btnbook" onClick={() => setShowPopup(bookopen)} />
           {showKeypad && (
             <Keypad onSuccess={handleCorrectCode} onClose={() => setShowKeypad(false)} />
           )}
         </div>
+        {showPopup && <Popup imageSrc={showPopup} onClose={() => setShowPopup(null)} />}
         <div className="menu-button">
           <MenuButton />
         </div>
