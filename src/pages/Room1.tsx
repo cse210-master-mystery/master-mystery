@@ -11,6 +11,7 @@ import { handleButtonEvent } from "../eventHandlers";
 import Timer from "../components/timer/timer";
 import HintButton from "../components/buttons/HintButton";
 import MenuButton from "../components/buttons/MenuButton";
+import { useEffect } from "react";
 
 const CASE1_START_PRESSURE = 5;
 const CASE1_TARGET_PRESSURE = 503;
@@ -30,6 +31,9 @@ export default function Room1() {
   const [case1Pressure, setCase1Pressure] = useState(CASE1_START_PRESSURE);
   const [isDoorUnlocked, setIsDoorUnlocked] = useState(false);
   const [showKeypad, setShowKeypad] = useState(false);
+  const handleTimerExpire = () => {
+    navigate("/");
+  };
 
   useEffect(() => {
     const id = setInterval(() => setNow(new Date()), 1000);
@@ -63,7 +67,7 @@ export default function Room1() {
   return (
     <div className="wrapper">
       <div className="game-scale">
-        <Timer initialSeconds={15} onExpire={handleTimerExpire} />
+        <Timer initialSeconds={900} onExpire={handleTimerExpire} />
         <div className="room1bkg">
           <img src={lever1img} className="btnlever1" onClick={handleCase1LeverClick} />
           <img

@@ -20,12 +20,13 @@ export default function Room2() {
   const [showPopup, setShowPopup] = useState<string | null>(null);
   const handleTimerExpire = () => {
     navigate("/");
+  };
 
   // make event handler for each button to react to click
   return (
     <div className="wrapper">
       <div className="game-scale">
-        <Timer initialSeconds={15} onExpire={handleTimerExpire} />
+        <Timer initialSeconds={900} onExpire={handleTimerExpire} />
         <div className="room2bkg">
           <img
             src={particlemovment}
