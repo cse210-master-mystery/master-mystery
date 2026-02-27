@@ -16,10 +16,8 @@ import MenuButton from "../components/buttons/MenuButton";
 import { useEffect } from "react";
 import { getRoom1Hint } from "../room1Hints";
 import { useReducer } from "react";
-import { room1Events } from "../room1events";
-import type { Room1State } from "../room1events";
+import { room1Events, initialRoom1State } from "../room1Events";
 
-const CASE1_START_PRESSURE = 5;
 const CASE1_TARGET_PRESSURE = 503;
 const CASE1_RANDOM_MIN = 20;
 const CASE1_RANDOM_MAX = 90;
@@ -47,19 +45,7 @@ export default function Room1() {
     return () => clearInterval(id);
   }, []);
 
-  const initialState: Room1State = {
-    pressure: CASE1_START_PRESSURE,
-    lever1Clicks: 0,
-    progress: {
-      pulledLever1: false,
-      openedBook: false,
-      openedKeypad: false,
-      case1Melted: false,
-      doorUnlocked: false,
-    },
-  };
-
-  const [state, dispatch] = useReducer(room1Events, initialState);
+  const [state, dispatch] = useReducer(room1Events, initialRoom1State);
   const isCase1Melted = state.progress.case1Melted;
 
   const handleCorrectCode = () => {

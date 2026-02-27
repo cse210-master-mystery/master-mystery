@@ -43,7 +43,6 @@ export default function Room2() {
     alert("Deactivation puzzle is not implemented.");
   };
 
-  // make event handler for each button to react to click
   return (
     <div className="wrapper">
       <div className="game-scale">
@@ -71,7 +70,18 @@ export default function Room2() {
               setShowPopup(relativeEnergy);
             }}
           />
-          <img src={controlconsole} className="controlconsole" onClick={handleConsoleClick} />
+          {/* mark consoleUnlocked: true when solved ny seting action to UNLOCK_CONSOLE */}
+          <img
+            src={controlconsole}
+            className="controlconsole"
+            onClick={() => {
+              handleButtonEvent("room2", {
+                dispatch,
+                action: { type: "UNLOCK_CONSOLE" },
+              });
+              handleConsoleClick;
+            }}
+          />
           <img
             src={plasmaplaque}
             className="plasmaplaque"
@@ -83,13 +93,20 @@ export default function Room2() {
               setShowPopup(plasmaplaque);
             }}
           />
+          {/* use action REVEAL_DOOR when the magnet moves to reveal the door and it becomes clickable*/}
           <img
             src={magnet}
             className="magnet"
             onClick={() => {
+              handleButtonEvent("room2", {
+                dispatch,
+                action: { type: "USE_MAGNET" },
+              });
               handleMagnetClick;
             }}
           />
+          {/* energy level switches to low when puzzleSolved: true */}
+          {/* use action "SET_ENERGY_LEVEL" in room 2 events to set the energy level logic */}
           <img
             src={energymeter}
             className="energymeter"
@@ -97,6 +114,7 @@ export default function Room2() {
               handleEnergyMeterClick;
             }}
           />
+          {/* mark puzzleSolved: true when solved ny seting action to "SOLVE_PUZZLE" */}
           <img
             src={dectivationpzzle}
             className="dectivationpzzle"
@@ -105,10 +123,9 @@ export default function Room2() {
             }}
           />
           {showPopup && <Popup imageSrc={showPopup} onClose={() => setShowPopup(null)} />}
-          {state.consoleLocked ? "LOCKED" : "ENTER CODE"}
           {/* uncomment line below and delete ` {true && ( ` once puzzles work */}
           {/* {state.doorUnlocked && (   */}
-            {true && (
+          {true && (
             <img
               src={doorimg}
               className="btndoor"

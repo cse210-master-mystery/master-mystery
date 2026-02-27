@@ -1,3 +1,5 @@
+const CASE1_START_PRESSURE = 5;
+
 export type Room1State = {
   pressure: number;
   lever1Clicks: number;
@@ -15,6 +17,18 @@ export type Room1Action =
   | { type: "OPEN_BOOK" }
   | { type: "OPEN_KEYPAD" }
   | { type: "UNLOCK_DOOR" };
+
+export const initialRoom1State: Room1State = {
+  pressure: CASE1_START_PRESSURE,
+  lever1Clicks: 0,
+  progress: {
+    pulledLever1: false,
+    openedBook: false,
+    openedKeypad: false,
+    case1Melted: false,
+    doorUnlocked: false,
+  },
+};
 
 export function room1Events(state: Room1State, action: Room1Action): Room1State {
   switch (action.type) {

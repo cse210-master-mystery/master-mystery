@@ -4,8 +4,6 @@ export interface Room2Progress {
   viewedParticlePoster: boolean;
   viewedEnergyPoster: boolean;
   viewedPlaque: boolean;
-  deactivatedElectricity: boolean;
-  deactivatedHeat: boolean;
   puzzleSolved: boolean;
   consoleUnlocked: boolean;
   magnetUsed: boolean;
@@ -23,8 +21,6 @@ export type Room2Action =
   | { type: "VIEW_PARTICLE_POSTER" }
   | { type: "VIEW_ENERGY_POSTER" }
   | { type: "VIEW_PLAQUE" }
-  | { type: "DEACTIVATE_ELECTRICITY" }
-  | { type: "DEACTIVATE_HEAT" }
   | { type: "SOLVE_PUZZLE" }
   | { type: "UNLOCK_CONSOLE" }
   | { type: "USE_MAGNET" }
@@ -39,8 +35,6 @@ export const initialRoom2State: Room2State = {
     viewedParticlePoster: false,
     viewedEnergyPoster: false,
     viewedPlaque: false,
-    deactivatedElectricity: false,
-    deactivatedHeat: false,
     puzzleSolved: false,
     consoleUnlocked: false,
     magnetUsed: false,
@@ -66,18 +60,6 @@ export function room2Events(state: Room2State, action: Room2Action): Room2State 
       return {
         ...state,
         progress: { ...state.progress, viewedPlaque: true },
-      };
-
-    case "DEACTIVATE_ELECTRICITY":
-      return {
-        ...state,
-        progress: { ...state.progress, deactivatedElectricity: true },
-      };
-
-    case "DEACTIVATE_HEAT":
-      return {
-        ...state,
-        progress: { ...state.progress, deactivatedHeat: true },
       };
 
     case "SOLVE_PUZZLE":

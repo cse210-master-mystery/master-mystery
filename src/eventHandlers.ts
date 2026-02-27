@@ -1,4 +1,4 @@
-import type { Room1Action } from "./room1events";
+import type { Room1Action } from "./room1Events";
 import type { Room2Action } from "./room2Events";
 
 type NavigatePayload = string;
