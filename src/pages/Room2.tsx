@@ -14,6 +14,7 @@ import relativeEnergy from "../assets/images/room2/relativeenergy.png";
 import Timer from "../components/timer/timer";
 import HintButton from "../components/buttons/HintButton";
 import MenuButton from "../components/buttons/MenuButton";
+import door from "../assets/images/room2/door.png";
 
 export default function Room2() {
   const navigate = useNavigate();
@@ -28,6 +29,9 @@ export default function Room2() {
       <div className="game-scale">
         <Timer initialSeconds={900} onExpire={handleTimerExpire} />
         <div className="room2bkg">
+          {/* Overlay layer between background and interactive components(e.g. plasma) */}
+          <div className="room2-overlay" />
+
           <img
             src={particlemovment}
             className="particlemovment"
@@ -61,6 +65,11 @@ export default function Room2() {
           <img
             src={dectivationpzzle}
             className="dectivationpzzle"
+            onClick={() => handleButtonEvent("navigate", "/end-page", navigate)}
+          />
+          <img
+            src={door}
+            className="door"
             onClick={() => handleButtonEvent("navigate", "/end-page", navigate)}
           />
           {showPopup && <Popup imageSrc={showPopup} onClose={() => setShowPopup(null)} />}
