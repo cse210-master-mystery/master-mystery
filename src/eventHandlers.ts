@@ -30,26 +30,29 @@ export function handleButtonEvent<T>(
       }
       break;
 
-    case "popup":
+    case "popup": {
       const popupPayload = payload as PopupPayload<T>;
       if (popupPayload && typeof popupPayload.setState === "function") {
         popupPayload.setState(popupPayload.value);
       }
       break;
+    }
 
-    case "room1":
+    case "room1": {
       const gamePayload = payload as GamePayloadrm1;
       if (gamePayload.dispatch && gamePayload.action) {
         gamePayload.dispatch(gamePayload.action);
       }
       break;
+    }
 
-    case "room2":
+    case "room2": {
       const gamePayload2 = payload as GamePayloadrm2;
       if (gamePayload2.dispatch && gamePayload2.action) {
         gamePayload2.dispatch(gamePayload2.action);
       }
       break;
+    }
 
     default:
       console.error(`Unhandled event type: ${eventType}`);
