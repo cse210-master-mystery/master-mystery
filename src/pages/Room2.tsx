@@ -79,7 +79,7 @@ export default function Room2() {
                 dispatch,
                 action: { type: "UNLOCK_CONSOLE" },
               });
-              handleConsoleClick;
+              handleConsoleClick();
             }}
           />
           <img
@@ -102,7 +102,7 @@ export default function Room2() {
                 dispatch,
                 action: { type: "USE_MAGNET" },
               });
-              handleMagnetClick;
+              handleMagnetClick();
             }}
           />
           {/* energy level switches to low when puzzleSolved: true */}
@@ -111,7 +111,7 @@ export default function Room2() {
             src={energymeter}
             className="energymeter"
             onClick={() => {
-              handleEnergyMeterClick;
+              handleEnergyMeterClick();
             }}
           />
           {/* mark puzzleSolved: true when solved ny seting action to "SOLVE_PUZZLE" */}
@@ -119,13 +119,13 @@ export default function Room2() {
             src={dectivationpzzle}
             className="dectivationpzzle"
             onClick={() => {
-              handleDeactivationPuzzleClick;
+              handleDeactivationPuzzleClick();
             }}
           />
           {showPopup && <Popup imageSrc={showPopup} onClose={() => setShowPopup(null)} />}
-          {/* uncomment line below and delete ` {true && ( ` once puzzles work */}
+          {/* uncomment line below and delete ` {... && ( ` once puzzles work */}
           {/* {state.doorUnlocked && (   */}
-          {true && (
+          {state.progress.viewedParticlePoster && (
             <img
               src={doorimg}
               className="btndoor"
