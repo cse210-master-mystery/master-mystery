@@ -57,7 +57,7 @@
   position: absolute;
   top: calc(10 * var(--scale));
   right: calc(10 * var(--scale));
-  font-size: 2em;
+  font-size: calc(29 * var(--scale));
 
   background: #a43a2a;
   color: white;
@@ -84,7 +84,7 @@
 
 .deactivation-title {
   font-family: "Jersey10-Regular", monospace;
-  font-size: 3em;
+  font-size: calc(43 * var(--scale));
   color: #efc331;
   text-align: center;
   margin: 0;
@@ -143,7 +143,7 @@
 /* Metric Icon */
 
 .deactivation-metric__icon {
-  font-size: 5em;
+  font-size: calc(72 * var(--scale));
   line-height: 1;
   transition: filter 0.3s ease;
 }
@@ -155,7 +155,7 @@
 /* Metric Label */
 
 .deactivation-metric__label {
-  font-size: 2.2em;
+  font-size: calc(32 * var(--scale));
   color: #e0e0e0;
   text-align: center;
 }
@@ -167,7 +167,7 @@
 /* Metric Status */
 
 .deactivation-metric__status {
-  font-size: 1.8em;
+  font-size: calc(26 * var(--scale));
   font-weight: 700;
   padding: calc(4 * var(--scale)) calc(16 * var(--scale));
   border-radius: calc(6 * var(--scale));
@@ -190,7 +190,7 @@
 
 .deactivation-result {
   font-family: "Jersey10-Regular", monospace;
-  font-size: 3.5em;
+  font-size: calc(50 * var(--scale));
   font-weight: 700;
   text-align: center;
   padding: calc(8 * var(--scale)) calc(30 * var(--scale));
@@ -213,7 +213,7 @@
 
 .deactivation-submit {
   font-family: "Jersey10-Regular", monospace;
-  font-size: 3em;
+  font-size: calc(43 * var(--scale));
   font-weight: 700;
   color: #a43a2a;
   letter-spacing: 1px;
