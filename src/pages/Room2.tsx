@@ -42,11 +42,11 @@ export default function Room2() {
     alert("Energy meter is not implemented.");
   };
 
-  const handleDeactivationPuzzleClick = () => {
-    alert("Deactivation puzzle is not implemented.");
-  };
-
   const handleDeactivationSuccess = () => {
+    handleButtonEvent("room2", {
+      dispatch,
+      action: { type: "SOLVE_PUZZLE" },
+    });
     setPuzzleSolved(true);
     setShowDeactivation(false);
   };
@@ -142,12 +142,14 @@ export default function Room2() {
           )}
           {/* uncomment line below and delete ` {... && ( ` once puzzles work */}
           {/* {state.doorUnlocked && (   */}
-          {state.progress.viewedParticlePoster && (
+          {state.progress.puzzleSolved && (
             <img
               src={doorimg}
               className="btndoor"
               alt="Exit door"
               onClick={() => navigate("/end-page")}
+            />
+          )}
         </div>
         <div className="menu-button">
           <MenuButton />
