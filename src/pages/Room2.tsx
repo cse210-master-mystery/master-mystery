@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { handleButtonEvent } from "../eventHandlers";
 import { useReducer, useState } from "react";
 import Popup from "../components/popups/popup";
+import DeactivationPuzzle from "../components/deactivation-puzzle/DeactivationPuzzle";
 import particlemovment from "../assets/images/room2/particlemovmnt.png";
 import energylvls from "../assets/images/room2/energylvls.png";
 import controlconsole from "../assets/images/room2/controlconsole.png";
@@ -23,6 +24,8 @@ export default function Room2() {
   const [state, dispatch] = useReducer(room2Events, initialRoom2State);
   const [showPopup, setShowPopup] = useState<string | null>(null);
 
+  const [showDeactivation, setShowDeactivation] = useState(false);
+  const [puzzleSolved, setPuzzleSolved] = useState(false);
   const handleTimerExpire = () => {
     navigate("/");
   };
@@ -41,6 +44,11 @@ export default function Room2() {
 
   const handleDeactivationPuzzleClick = () => {
     alert("Deactivation puzzle is not implemented.");
+  };
+
+  const handleDeactivationSuccess = () => {
+    setPuzzleSolved(true);
+    setShowDeactivation(false);
   };
 
   return (
@@ -117,12 +125,21 @@ export default function Room2() {
           {/* mark puzzleSolved: true when solved ny seting action to "SOLVE_PUZZLE" */}
           <img
             src={dectivationpzzle}
-            className="dectivationpzzle"
+            className={`dectivationpzzle ${puzzleSolved ? "dectivationpzzle--solved" : ""}`}
             onClick={() => {
-              handleDeactivationPuzzleClick();
+              if (!puzzleSolved) {
+                setShowDeactivation(true);
+              }
             }}
+            data-testid="dectivationpzzle"
           />
           {showPopup && <Popup imageSrc={showPopup} onClose={() => setShowPopup(null)} />}
+          {showDeactivation && (
+            <DeactivationPuzzle
+              onSuccess={handleDeactivationSuccess}
+              onClose={() => setShowDeactivation(false)}
+            />
+          )}
           {/* uncomment line below and delete ` {... && ( ` once puzzles work */}
           {/* {state.doorUnlocked && (   */}
           {state.progress.viewedParticlePoster && (
@@ -131,8 +148,6 @@ export default function Room2() {
               className="btndoor"
               alt="Exit door"
               onClick={() => navigate("/end-page")}
-            />
-          )}
         </div>
         <div className="menu-button">
           <MenuButton />
