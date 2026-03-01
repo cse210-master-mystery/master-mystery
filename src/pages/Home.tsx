@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../components/buttons/Button";
-import HintButton from "../components/buttons/HintButton";
 import MenuButton from "../components/buttons/MenuButton";
 
 export default function Home() {
@@ -24,10 +23,6 @@ export default function Home() {
 
           <div className="menu-button">
             <MenuButton />
-          </div>
-
-          <div className="hint-button">
-            <HintButton hint="..." />
           </div>
         </div>
       </div>
