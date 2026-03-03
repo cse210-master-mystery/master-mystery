@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../components/buttons/Button";
-import HintButton from "../components/buttons/HintButton";
 import MenuButton from "../components/buttons/MenuButton";
 
 export default function Home() {
@@ -13,17 +12,17 @@ export default function Home() {
           <div className="center">
             <h1 className="title">Matter Mystery</h1>
 
-            <Button className="btnStart" onClick={() => navigate("/room1")}>
+            <Button
+              className="btnStart"
+              fontSize="clamp(16px, calc(5 * var(--unit)), 200px)"
+              onClick={() => navigate("/story")}
+            >
               Start
             </Button>
           </div>
 
           <div className="menu-button">
             <MenuButton />
-          </div>
-
-          <div className="hint-button">
-            <HintButton hint="..." />
           </div>
         </div>
       </div>
