@@ -29,7 +29,7 @@ export default function Room2() {
 
   const [showDeactivation, setShowDeactivation] = useState(false);
   const [puzzleSolved, setPuzzleSolved] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const handleTimerExpire = () => {
     navigate("/");
   };
@@ -63,7 +63,7 @@ export default function Room2() {
   return (
     <div className="wrapper">
       <div className="game-scale">
-        <Timer initialSeconds={900} onExpire={handleTimerExpire} paused={isPaused} />
+        <Timer initialSeconds={900} onExpire={handleTimerExpire} paused={menuOpen} />
         <div className="room2bkg">
           {/* Overlay layer between background and interactive components(e.g. plasma) */}
           <div className="room2-overlay" />
@@ -176,12 +176,8 @@ export default function Room2() {
           )}
         </div>
         <div className="menu-button">
-          <MenuButton>
-            <GameMenuContent
-              isPaused={isPaused}
-              onTogglePause={() => setIsPaused((p) => !p)}
-              onReturnHome={() => navigate("/")}
-            />
+          <MenuButton onOpenChange={setMenuOpen}>
+            <GameMenuContent onReturnHome={() => navigate("/")} />
           </MenuButton>
         </div>
         <div className="hint-button">

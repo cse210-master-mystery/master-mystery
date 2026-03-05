@@ -35,7 +35,7 @@ export default function Room1() {
 
   const [showPopup, setShowPopup] = useState<string | null>(null);
   const [showKeypad, setShowKeypad] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const [now, setNow] = useState(new Date());
   const handleTimerExpire = () => {
@@ -62,7 +62,7 @@ export default function Room1() {
   return (
     <div className="wrapper">
       <div className="game-scale">
-        <Timer initialSeconds={900} onExpire={handleTimerExpire} paused={isPaused} />
+        <Timer initialSeconds={900} onExpire={handleTimerExpire} paused={menuOpen} />
         <div className="room1bkg">
           <img
             src={lever1img}
@@ -132,12 +132,8 @@ export default function Room1() {
         </div>
         {showPopup && <Popup imageSrc={showPopup} onClose={() => setShowPopup(null)} />}
         <div className="menu-button">
-          <MenuButton>
-            <GameMenuContent
-              isPaused={isPaused}
-              onTogglePause={() => setIsPaused((p) => !p)}
-              onReturnHome={() => navigate("/")}
-            />
+          <MenuButton onOpenChange={setMenuOpen}>
+            <GameMenuContent onReturnHome={() => navigate("/")} />
           </MenuButton>
         </div>
         <div className="hint-button">

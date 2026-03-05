@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import Button from "./Button";
 import Modal from "../modal/Modal";
 
@@ -12,11 +12,21 @@ export function useMenuModalClose() {
 interface MenuButtonProps {
   children?: React.ReactNode;
   ariaLabel?: string;
+  /** Notify parent when the menu modal opens or closes. */
+  onOpenChange?: (open: boolean) => void;
 }
 
-const MenuButton: React.FC<MenuButtonProps> = ({ children, ariaLabel = "Open menu" }) => {
+const MenuButton: React.FC<MenuButtonProps> = ({
+  children,
+  ariaLabel = "Open menu",
+  onOpenChange,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
+
+  useEffect(() => {
+    onOpenChange?.(isOpen);
+  }, [isOpen, onOpenChange]);
 
   return (
     <MenuModalContext.Provider value={{ closeModal }}>
