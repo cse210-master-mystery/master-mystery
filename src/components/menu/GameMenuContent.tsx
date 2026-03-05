@@ -23,6 +23,14 @@ const GameMenuContent: React.FC<GameMenuContentProps> = ({ onReturnHome }) => {
     <div className="game-menu-content">
       <h2 className="game-menu-title">Menu</h2>
       <div className="game-menu-actions">
+        <button
+          type="button"
+          className="game-menu-btn"
+          onClick={closeModal}
+          aria-label="Back to game"
+        >
+          Back
+        </button>
         {onReturnHome != null && (
           <button
             type="button"
