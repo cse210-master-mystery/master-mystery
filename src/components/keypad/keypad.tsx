@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import "./keypad.css";
 
 type KeyType = "digit" | "clear" | "enter";
@@ -12,8 +13,6 @@ interface KeypadProps {
   onSuccess: () => void;
   onClose: () => void;
 }
-
-const CORRECT_CODE = "503";
 
 const keys: KeyConfig[] = [
   { label: "1", value: "1", type: "digit" },
@@ -31,6 +30,8 @@ const keys: KeyConfig[] = [
 ];
 
 export default function Keypad({ onSuccess, onClose }: KeypadProps) {
+  const location = useLocation();
+  const CORRECT_CODE = location.pathname === "/room2" ? "9426" : "503";
   const [value, setValue] = useState<string>("");
   const [message, setMessage] = useState<string>("");
 
@@ -40,7 +41,7 @@ export default function Keypad({ onSuccess, onClose }: KeypadProps) {
       setMessage("");
       return;
     } else if (key.type === "enter") {
-      if (value.length !== 3) {
+      if (value.length !== CORRECT_CODE.length) {
         return;
       }
 
@@ -59,7 +60,7 @@ export default function Keypad({ onSuccess, onClose }: KeypadProps) {
       }, 1500);
       return;
     } else {
-      if (value.length < 3) {
+      if (value.length < CORRECT_CODE.length) {
         setValue((prev) => prev + key.value);
       } else {
         setValue((prev) => prev.slice(1) + key.value);
@@ -88,8 +89,10 @@ export default function Keypad({ onSuccess, onClose }: KeypadProps) {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <div className={`display ${message ? "result" : ""}`}>
-          {message ? message : value.padEnd(3, "_")}
+        <div
+          className={`display ${message ? (message === "CORRECT" ? "correct" : "incorrect") : ""}`}
+        >
+          {message ? message : value.padEnd(CORRECT_CODE.length, "_")}
         </div>
 
         <div className="keypad-grid">

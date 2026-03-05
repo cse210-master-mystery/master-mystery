@@ -10,6 +10,7 @@ import plasmaplaque from "../assets/images/room2/plasmaplaque.png";
 import magnet from "../assets/images/room2/magnet.png";
 import energymeter from "../assets/images/room2/energymeter.png";
 import dectivationpzzle from "../assets/images/room2/dectivationpzzle.png";
+import Keypad from "../components/keypad/keypad";
 import movePoster from "../assets/images/room2/particlemove.png";
 import relativeEnergy from "../assets/images/room2/relativeenergy.png";
 import doorimg from "../assets/images/room1/door.png";
@@ -30,9 +31,10 @@ export default function Room2() {
   const handleTimerExpire = () => {
     navigate("/");
   };
+  const [showKeypad, setShowKeypad] = useState(false);
 
-  const handleConsoleClick = () => {
-    alert("Console is locked.");
+  const handleCorrectCode = () => {
+    setShowKeypad(false);
   };
 
   const handleMagnetClick = () => {
@@ -86,14 +88,19 @@ export default function Room2() {
           <img
             src={controlconsole}
             className="controlconsole"
-            onClick={() => {
+            onClick={() => setShowKeypad(true)}
+          />
+          {showKeypad && (
+            <Keypad onSuccess={handleCorrectCode} onClose={() => setShowKeypad(false)} />
+          )}
+          {/*onClick={() => {
               handleButtonEvent("room2", {
                 dispatch,
                 action: { type: "UNLOCK_CONSOLE" },
               });
               handleConsoleClick();
             }}
-          />
+          />*/}
           <img
             src={plasmaplaque}
             className="plasmaplaque"
