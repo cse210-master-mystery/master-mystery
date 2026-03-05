@@ -11,6 +11,8 @@ function formatMMSS(totalSeconds: number) {
 export type TimerProps = {
   initialSeconds: number;
   onExpire: () => void;
+  /** When true, the countdown does not decrement. */
+  paused?: boolean;
   /** Message shown in the modal when countdown ends. */
   expiredMessage?: string;
   /** Label for the confirm button in the expired modal. */
@@ -21,6 +23,7 @@ export type TimerProps = {
 export default function Timer({
   initialSeconds,
   onExpire,
+  paused = false,
   expiredMessage = "You are running out of time.",
   confirmLabel = "Return to Home",
   className = "game-clock",
@@ -29,6 +32,7 @@ export default function Timer({
   const [showExpiredModal, setShowExpiredModal] = useState(false);
 
   useEffect(() => {
+    if (paused) return;
     const id = window.setInterval(() => {
       setRemaining((prev) => {
         const next = prev - 1;
@@ -42,7 +46,7 @@ export default function Timer({
     }, 1000);
 
     return () => window.clearInterval(id);
-  }, [initialSeconds]);
+  }, [initialSeconds, paused]);
 
   const handleConfirmExpired = () => {
     setShowExpiredModal(false);

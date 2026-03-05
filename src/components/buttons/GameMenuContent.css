@@ -1,0 +1,37 @@
+.game-menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.game-menu-title {
+  margin: 0 0 0.25rem 0;
+  font-size: var(--modal-h2);
+}
+
+.game-menu-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.game-menu-btn {
+  font-family: inherit;
+  font-size: var(--modal-text);
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 2px solid var(--brown-orange, #a43a2a);
+  background: var(--yellow, #efc331);
+  color: var(--brown-orange, #a43a2a);
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.game-menu-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+.game-menu-btn:active {
+  transform: scale(0.98);
+}

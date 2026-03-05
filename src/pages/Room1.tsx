@@ -13,6 +13,7 @@ import { handleButtonEvent } from "../eventHandlers";
 import Timer from "../components/timer/timer";
 import HintButton from "../components/buttons/HintButton";
 import MenuButton from "../components/buttons/MenuButton";
+import GameMenuContent from "../components/buttons/GameMenuContent";
 import { useEffect } from "react";
 import { getRoom1Hint } from "../room1Hints";
 import { useReducer } from "react";
@@ -34,6 +35,7 @@ export default function Room1() {
 
   const [showPopup, setShowPopup] = useState<string | null>(null);
   const [showKeypad, setShowKeypad] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   const [now, setNow] = useState(new Date());
   const handleTimerExpire = () => {
@@ -60,7 +62,7 @@ export default function Room1() {
   return (
     <div className="wrapper">
       <div className="game-scale">
-        <Timer initialSeconds={900} onExpire={handleTimerExpire} />
+        <Timer initialSeconds={900} onExpire={handleTimerExpire} paused={isPaused} />
         <div className="room1bkg">
           <img
             src={lever1img}
@@ -130,7 +132,13 @@ export default function Room1() {
         </div>
         {showPopup && <Popup imageSrc={showPopup} onClose={() => setShowPopup(null)} />}
         <div className="menu-button">
-          <MenuButton />
+          <MenuButton>
+            <GameMenuContent
+              isPaused={isPaused}
+              onTogglePause={() => setIsPaused((p) => !p)}
+              onReturnHome={() => navigate("/")}
+            />
+          </MenuButton>
         </div>
         <div className="hint-button">
           <HintButton hint={getRoom1Hint(state.progress, state.lever1Clicks)} />
