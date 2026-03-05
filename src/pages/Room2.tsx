@@ -22,10 +22,6 @@ import { room2Events, initialRoom2State } from "../room2Events";
 import { getRoom2Hint } from "../room2Hints";
 
 export default function Room2() {
-  
-
-
-export default function Room2() {
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(room2Events, initialRoom2State);
   const [showPopup, setShowPopup] = useState<string | null>(null);
@@ -39,9 +35,6 @@ export default function Room2() {
 
   const handleCorrectCode = () => {
     setShowKeypad(false);
-
-  const handleConsoleClick = () => {
-    alert("Console is locked.");
   };
 
   const handleMagnetClick = () => {
