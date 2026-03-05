@@ -1,5 +1,5 @@
 import React from "react";
-import { useMenuModalClose } from "./MenuButton";
+import { useMenuModalClose } from "../buttons/MenuButton";
 import "./GameMenuContent.css";
 
 export interface GameMenuContentProps {

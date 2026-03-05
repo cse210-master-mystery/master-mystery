@@ -13,7 +13,7 @@ import { handleButtonEvent } from "../eventHandlers";
 import Timer from "../components/timer/timer";
 import HintButton from "../components/buttons/HintButton";
 import MenuButton from "../components/buttons/MenuButton";
-import GameMenuContent from "../components/buttons/GameMenuContent";
+import GameMenuContent from "../components/menu/GameMenuContent";
 import { useEffect } from "react";
 import { getRoom1Hint } from "../room1Hints";
 import { useReducer } from "react";
