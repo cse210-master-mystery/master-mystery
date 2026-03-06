@@ -143,10 +143,7 @@ export default function Room2() {
             }}
           />
           {showEnergyMeter && (
-            <EnergyMeter
-              energy={energy}
-              onClose={() => setShowEnergyMeter(false)}
-            />
+            <EnergyMeter energy={energy} onClose={() => setShowEnergyMeter(false)} />
           )}
           {/* mark puzzleSolved: true when solved ny seting action to "SOLVE_PUZZLE" */}
           <img
