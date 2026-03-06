@@ -24,7 +24,9 @@
   background: var(--yellow, #efc331);
   color: var(--brown-orange, #a43a2a);
   cursor: pointer;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
 }
 
 .game-menu-btn:hover {

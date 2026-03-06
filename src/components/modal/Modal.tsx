@@ -10,12 +10,7 @@ interface ModalProps {
   showCloseButton?: boolean;
 }
 
-const Modal: React.FC<ModalProps> = ({
-  isOpen,
-  onClose,
-  children,
-  showCloseButton = true,
-}) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, showCloseButton = true }) => {
   if (!isOpen) return null;
 
   return createPortal(
