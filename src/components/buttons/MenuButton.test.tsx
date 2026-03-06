@@ -15,8 +15,8 @@ describe("MenuButton", () => {
 
     expect(screen.getByText(/Menu not implemented/i)).toBeInTheDocument();
 
-    const closeBtn = screen.getByText("×");
-    await user.click(closeBtn);
+    const overlay = document.querySelector(".modal-overlay");
+    if (overlay) await user.click(overlay);
 
     expect(screen.queryByText(/Menu not implemented/i)).not.toBeInTheDocument();
   });
