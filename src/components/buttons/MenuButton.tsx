@@ -1,13 +1,7 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./Button";
 import Modal from "../modal/Modal";
-
-export const MenuModalContext = createContext<{ closeModal: () => void } | null>(null);
-
-export function useMenuModalClose() {
-  const ctx = useContext(MenuModalContext);
-  return ctx?.closeModal ?? (() => {});
-}
+import { MenuModalContext } from "./MenuModalContext";
 
 interface MenuButtonProps {
   children?: React.ReactNode;

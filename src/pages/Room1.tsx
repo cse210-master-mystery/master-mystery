@@ -14,7 +14,6 @@ import Timer from "../components/timer/timer";
 import HintButton from "../components/buttons/HintButton";
 import MenuButton from "../components/buttons/MenuButton";
 import GameMenuContent from "../components/menu/GameMenuContent";
-import { useEffect } from "react";
 import { getRoom1Hint } from "../room1Hints";
 import { useReducer } from "react";
 import { room1Events, initialRoom1State } from "../room1Events";
@@ -37,15 +36,9 @@ export default function Room1() {
   const [showKeypad, setShowKeypad] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const [now, setNow] = useState(new Date());
   const handleTimerExpire = () => {
     navigate("/");
   };
-  useEffect(() => {
-    console.log(now); // Log the value of now when timer starts
-    const id = setInterval(() => setNow(new Date()), 1000);
-    return () => clearInterval(id);
-  }, []);
 
   const [state, dispatch] = useReducer(room1Events, initialRoom1State);
   const isCase1Melted = state.progress.case1Melted;
