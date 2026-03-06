@@ -34,6 +34,10 @@ export default function Room2() {
   const [showKeypad, setShowKeypad] = useState(false);
 
   const handleCorrectCode = () => {
+    handleButtonEvent("room2", {
+      dispatch,
+      action: { type: "UNLOCK_CONSOLE" },
+    });
     setShowKeypad(false);
   };
 
@@ -88,7 +92,9 @@ export default function Room2() {
           <img
             src={controlconsole}
             className="controlconsole"
-            onClick={() => setShowKeypad(true)}
+            onClick={() =>
+              puzzleSolved ? setShowKeypad(true) : alert("Solve puzzle to unlock control console.")
+            }
           />
           {showKeypad && (
             <Keypad onSuccess={handleCorrectCode} onClose={() => setShowKeypad(false)} />
@@ -158,7 +164,7 @@ export default function Room2() {
           )}
           {/* uncomment line below and delete ` {... && ( ` once puzzles work */}
           {/* {state.doorUnlocked && (   */}
-          {state.progress.puzzleSolved && (
+          {state.progress.consoleUnlocked && (
             <img
               src={doorimg}
               className="btndoor"
