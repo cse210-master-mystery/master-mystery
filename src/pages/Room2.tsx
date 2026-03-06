@@ -88,7 +88,7 @@ export default function Room2() {
           <img
             src={controlconsole}
             className="controlconsole"
-            onClick={() => setShowKeypad(true)}
+            onClick={() => (puzzleSolved ? setShowKeypad(true) : setShowKeypad(false))}
           />
           {showKeypad && (
             <Keypad onSuccess={handleCorrectCode} onClose={() => setShowKeypad(false)} />

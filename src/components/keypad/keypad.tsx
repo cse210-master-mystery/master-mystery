@@ -31,7 +31,7 @@ const keys: KeyConfig[] = [
 
 export default function Keypad({ onSuccess, onClose }: KeypadProps) {
   const location = useLocation();
-  const CORRECT_CODE = location.pathname === "/room2" ? "9426" : "503";
+  const CORRECT_CODE = location.pathname === "/room2" ? "9425" : "503";
   const [value, setValue] = useState<string>("");
   const [message, setMessage] = useState<string>("");
 
