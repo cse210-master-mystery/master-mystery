@@ -1,15 +1,15 @@
 import type { Room2Progress } from "./room2Events";
 
 export function getRoom2Hint(progress: Room2Progress): string {
-  if (!progress.viewedParticlePoster) {
+  if (!progress.viewedParticlePoster && !progress.consoleUnlocked) {
     return "Examine how particles behave in different states of matter.";
   }
 
-  if (!progress.viewedEnergyPoster) {
+  if (!progress.viewedEnergyPoster && !progress.consoleUnlocked) {
     return "Compare the relative energy levels of each state.";
   }
 
-  if (!progress.viewedPlaque) {
+  if (!progress.viewedPlaque && !progress.puzzleSolved) {
     return "Read the plaque carefully. How is plasma formed?";
   }
 

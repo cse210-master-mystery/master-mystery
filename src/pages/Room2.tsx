@@ -34,6 +34,10 @@ export default function Room2() {
   const [showKeypad, setShowKeypad] = useState(false);
 
   const handleCorrectCode = () => {
+    handleButtonEvent("room2", {
+      dispatch,
+      action: { type: "UNLOCK_CONSOLE" },
+    });
     setShowKeypad(false);
   };
 
@@ -160,7 +164,7 @@ export default function Room2() {
           )}
           {/* uncomment line below and delete ` {... && ( ` once puzzles work */}
           {/* {state.doorUnlocked && (   */}
-          {state.progress.puzzleSolved && (
+          {state.progress.consoleUnlocked && (
             <img
               src={doorimg}
               className="btndoor"
