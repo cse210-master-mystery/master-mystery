@@ -4,7 +4,7 @@
 
 :root {
   /* Modal sizing */
-  --modal-width: min(92vw, 640px);
+  --modal-width: min(85vw, 420px);
   --modal-max-height: 85vh;
 
   /* Spacing */

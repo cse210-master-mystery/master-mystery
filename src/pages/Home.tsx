@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../components/buttons/Button";
-import MenuButton from "../components/buttons/MenuButton";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -19,10 +18,6 @@ export default function Home() {
             >
               Start
             </Button>
-          </div>
-
-          <div className="menu-button">
-            <MenuButton />
           </div>
         </div>
       </div>

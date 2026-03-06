@@ -17,6 +17,7 @@ import doorimg from "../assets/images/room1/door.png";
 import Timer from "../components/timer/timer";
 import HintButton from "../components/buttons/HintButton";
 import MenuButton from "../components/buttons/MenuButton";
+import GameMenuContent from "../components/menu/GameMenuContent";
 import door from "../assets/images/room2/door.png";
 import { room2Events, initialRoom2State } from "../room2Events";
 import { getRoom2Hint } from "../room2Hints";
@@ -28,6 +29,7 @@ export default function Room2() {
 
   const [showDeactivation, setShowDeactivation] = useState(false);
   const [puzzleSolved, setPuzzleSolved] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const handleTimerExpire = () => {
     navigate("/");
   };
@@ -61,7 +63,7 @@ export default function Room2() {
   return (
     <div className="wrapper">
       <div className="game-scale">
-        <Timer initialSeconds={900} onExpire={handleTimerExpire} />
+        <Timer initialSeconds={900} onExpire={handleTimerExpire} paused={menuOpen} />
         <div className="room2bkg">
           {/* Overlay layer between background and interactive components(e.g. plasma) */}
           <div className="room2-overlay" />
@@ -174,7 +176,9 @@ export default function Room2() {
           )}
         </div>
         <div className="menu-button">
-          <MenuButton />
+          <MenuButton onOpenChange={setMenuOpen}>
+            <GameMenuContent onReturnHome={() => navigate("/")} />
+          </MenuButton>
         </div>
         <div className="hint-button">
           <HintButton hint={getRoom2Hint(state.progress)} />
