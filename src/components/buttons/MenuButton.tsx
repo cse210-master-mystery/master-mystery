@@ -34,7 +34,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({
         Menu
       </Button>
 
-      <Modal isOpen={isOpen} onClose={closeModal}>
+      <Modal isOpen={isOpen} onClose={closeModal} showCloseButton={false}>
         {children ?? <div>Menu not implemented</div>}
       </Modal>
     </MenuModalContext.Provider>
