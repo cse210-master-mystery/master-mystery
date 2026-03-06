@@ -1,24 +1,29 @@
 interface EnergyMeterProps {
   energy: number; // 0–100
+  onClose: () => void;
 }
 
-export default function EnergyMeter({ energy = 50 }: EnergyMeterProps) {
-  const getLevel = () => {
-    if (energy < 33) return "low";
-    if (energy < 66) return "medium";
-    return "high";
-  };
-
-  const level = getLevel();
-
-  const color = level === "low" ? "#ff6b6b" : level === "medium" ? "#ffd93d" : "#6bcf63";
+export default function EnergyMeter({ energy, onClose }: EnergyMeterProps) {
+  const level =
+    energy < 33 ? "LOW" :
+    energy < 66 ? "MEDIUM" :
+    "HIGH";
 
   return (
-    <div className="energy-container">
-      <div className="energy-label">{level.toUpperCase()} ENERGY</div>
+    <div className="modal-overlay">
+      <div className="modal-content">
 
-      <div className="energy-bar">
-        <div className="energy-fill" style={{ width: `${energy}%`, background: color }} />
+        <h2>{level} ENERGY</h2>
+
+        <div className="energy-bar">
+          <div
+            className="energy-fill"
+            style={{ width: `${energy}%` }}
+          />
+        </div>
+
+        <button onClick={onClose}>Close</button>
+
       </div>
     </div>
   );
