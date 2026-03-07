@@ -1,30 +1,58 @@
-.energy-container {
-  background: #1b1b1b;
-  padding: 1rem;
-  border-radius: 12px;
-  border: 2px solid #444;
-  width: 220px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+.energy-meter {
+  min-width: min(80vw, 340px);
+  color: #111;
 }
 
-.energy-label {
+.energy-meter__title {
+  margin: 0 0 0.5rem;
   text-align: center;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
-.energy-bar {
+.energy-meter__bar {
   width: 100%;
-  height: 16px;
-  background: #333;
-  border-radius: 10px;
+  height: 18px;
+  background: #e5e7eb;
+  border-radius: 999px;
   overflow: hidden;
+  border: 1px solid #cbd5e1;
 }
 
-.energy-fill {
+.energy-meter__fill {
   height: 100%;
-  transition:
-    width 0.35s ease,
-    background 0.35s ease;
+  transition: width 0.35s ease;
+}
+
+.energy-meter--low .energy-meter__fill {
+  background: #ef4444;
+}
+
+.energy-meter--medium .energy-meter__fill {
+  background: #f59e0b;
+}
+
+.energy-meter--high .energy-meter__fill {
+  background: #22c55e;
+}
+
+.energy-meter__value {
+  margin: 0.5rem 0 0;
+  text-align: center;
+  font-weight: 700;
+}
+
+.energy-meter__close {
+  margin-top: 0.75rem;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  font: inherit;
+  background: #1f2937;
+  color: #fff;
+}
+
+.energy-meter__close:hover {
+  background: #111827;
 }
