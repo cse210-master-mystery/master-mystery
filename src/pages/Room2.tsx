@@ -17,6 +17,7 @@ import doorimg from "../assets/images/room1/door.png";
 import Timer from "../components/timer/timer";
 import HintButton from "../components/buttons/HintButton";
 import MenuButton from "../components/buttons/MenuButton";
+import GameMenuContent from "../components/menu/GameMenuContent";
 import door from "../assets/images/room2/door.png";
 import EnergyMeter from "../components/energymeter/energymeter";
 import { room2Events, initialRoom2State } from "../room2Events";
@@ -31,12 +32,17 @@ export default function Room2() {
   const [puzzleSolved, setPuzzleSolved] = useState(false);
   const [showEnergyMeter, setShowEnergyMeter] = useState(false);
   const [energy, setEnergy] = useState<number>(0);
+  const [menuOpen, setMenuOpen] = useState(false);
   const handleTimerExpire = () => {
     navigate("/");
   };
   const [showKeypad, setShowKeypad] = useState(false);
 
   const handleCorrectCode = () => {
+    handleButtonEvent("room2", {
+      dispatch,
+      action: { type: "UNLOCK_CONSOLE" },
+    });
     setShowKeypad(false);
   };
 
@@ -65,7 +71,7 @@ export default function Room2() {
   return (
     <div className="wrapper">
       <div className="game-scale">
-        <Timer initialSeconds={900} onExpire={handleTimerExpire} />
+        <Timer initialSeconds={900} onExpire={handleTimerExpire} paused={menuOpen} />
         <div className="room2bkg">
           {/* Overlay layer between background and interactive components(e.g. plasma) */}
           <div className="room2-overlay" />
@@ -96,7 +102,9 @@ export default function Room2() {
           <img
             src={controlconsole}
             className="controlconsole"
-            onClick={() => setShowKeypad(true)}
+            onClick={() =>
+              puzzleSolved ? setShowKeypad(true) : alert("Solve puzzle to unlock control console.")
+            }
           />
           {showKeypad && (
             <Keypad onSuccess={handleCorrectCode} onClose={() => setShowKeypad(false)} />
@@ -170,7 +178,7 @@ export default function Room2() {
           )}
           {/* uncomment line below and delete ` {... && ( ` once puzzles work */}
           {/* {state.doorUnlocked && (   */}
-          {state.progress.puzzleSolved && (
+          {state.progress.consoleUnlocked && (
             <img
               src={doorimg}
               className="btndoor"
@@ -180,7 +188,9 @@ export default function Room2() {
           )}
         </div>
         <div className="menu-button">
-          <MenuButton />
+          <MenuButton onOpenChange={setMenuOpen}>
+            <GameMenuContent onReturnHome={() => navigate("/")} />
+          </MenuButton>
         </div>
         <div className="hint-button">
           <HintButton hint={getRoom2Hint(state.progress)} />
