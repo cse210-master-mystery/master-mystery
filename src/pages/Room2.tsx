@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { handleButtonEvent } from "../eventHandlers";
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import Popup from "../components/popups/popup";
 import DeactivationPuzzle from "../components/deactivation-puzzle/DeactivationPuzzle";
 import particlemovment from "../assets/images/room2/particlemovmnt.png";
@@ -13,7 +13,6 @@ import dectivationpzzle from "../assets/images/room2/dectivationpzzle.png";
 import Keypad from "../components/keypad/keypad";
 import movePoster from "../assets/images/room2/particlemove.png";
 import relativeEnergy from "../assets/images/room2/relativeenergy.png";
-import doorimg from "../assets/images/room1/door.png";
 import Timer from "../components/timer/timer";
 import HintButton from "../components/buttons/HintButton";
 import MenuButton from "../components/buttons/MenuButton";
@@ -33,10 +32,19 @@ export default function Room2() {
   const [showEnergyMeter, setShowEnergyMeter] = useState(false);
   const [energy, setEnergy] = useState<number>(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const revealTimerRef = useRef<number | null>(null);
   const handleTimerExpire = () => {
     navigate("/");
   };
   const [showKeypad, setShowKeypad] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      if (revealTimerRef.current !== null) {
+        window.clearTimeout(revealTimerRef.current);
+      }
+    };
+  }, []);
 
   const handleCorrectCode = () => {
     handleButtonEvent("room2", {
@@ -47,7 +55,27 @@ export default function Room2() {
   };
 
   const handleMagnetClick = () => {
-    alert("Move plasma only after unlocking console.");
+    if (!state.progress.consoleUnlocked) {
+      alert("Unlock the control console before moving plasma.");
+      return;
+    }
+
+    if (state.progress.doorRevealed || revealTimerRef.current !== null) {
+      return;
+    }
+
+    handleButtonEvent("room2", {
+      dispatch,
+      action: { type: "USE_MAGNET" },
+    });
+
+    revealTimerRef.current = window.setTimeout(() => {
+      handleButtonEvent("room2", {
+        dispatch,
+        action: { type: "REVEAL_DOOR" },
+      });
+      revealTimerRef.current = null;
+    }, 650);
   };
 
   const generateEnergy = () => {
@@ -131,15 +159,14 @@ export default function Room2() {
           {/* use action REVEAL_DOOR when the magnet moves to reveal the door and it becomes clickable*/}
           <img
             src={magnet}
-            className="magnet"
-            onClick={() => {
-              handleButtonEvent("room2", {
-                dispatch,
-                action: { type: "USE_MAGNET" },
-              });
-              handleMagnetClick();
-            }}
+            className={`magnet ${state.progress.consoleUnlocked && !state.progress.doorRevealed ? "magnet--ready" : ""}`}
+            onClick={handleMagnetClick}
           />
+          {state.progress.consoleUnlocked && !state.progress.doorRevealed && (
+            <div className="magnet-prompt" role="status" aria-live="polite">
+              Console unlocked. Click the magnet to move plasma.
+            </div>
+          )}
           {/* energy level switches to low when puzzleSolved: true */}
           {/* use action "SET_ENERGY_LEVEL" in room 2 events to set the energy level logic */}
           <img
@@ -166,26 +193,19 @@ export default function Room2() {
             }}
             data-testid="dectivationpzzle"
           />
-          <img
-            src={door}
-            className="door"
-            onClick={() => handleButtonEvent("navigate", "/end-page", navigate)}
-          />
+          {state.progress.doorRevealed && (
+            <img
+              src={door}
+              className="door door--revealed"
+              alt="Exit door"
+              onClick={() => handleButtonEvent("navigate", "/end-page", navigate)}
+            />
+          )}
           {showPopup && <Popup imageSrc={showPopup} onClose={() => setShowPopup(null)} />}
           {showDeactivation && (
             <DeactivationPuzzle
               onSuccess={handleDeactivationSuccess}
               onClose={() => setShowDeactivation(false)}
-            />
-          )}
-          {/* uncomment line below and delete ` {... && ( ` once puzzles work */}
-          {/* {state.doorUnlocked && (   */}
-          {state.progress.consoleUnlocked && (
-            <img
-              src={doorimg}
-              className="btndoor"
-              alt="Exit door"
-              onClick={() => navigate("/end-page")}
             />
           )}
         </div>

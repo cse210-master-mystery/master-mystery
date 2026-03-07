@@ -510,10 +510,32 @@ body {
   top: calc(49.3% - (15 * min(1vw, 1.40625vh)) / 2);
   left: calc(70.2% - (15 * min(1vw, 1.40625vh)) / 2);
   z-index: 3;
+  cursor: pointer;
 }
 
 .magnet:hover {
   transform: scale(1.04);
+}
+
+.magnet--ready {
+  animation: magnet-nudge 1.2s ease-in-out infinite;
+}
+
+.magnet-prompt {
+  position: absolute;
+  top: calc(62% - (4 * min(1vw, 1.40625vh)) / 2);
+  left: calc(71% - (20 * min(1vw, 1.40625vh)) / 2);
+  width: calc(20 * min(1vw, 1.40625vh));
+  padding: calc(0.45 * min(1vw, 1.40625vh)) calc(0.6 * min(1vw, 1.40625vh));
+  border: 3px solid #5a2e10;
+  border-radius: calc(0.6 * min(1vw, 1.40625vh));
+  background: #ffe08a;
+  color: #2e1305;
+  font-size: 1.9em;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 5px 0 rgba(53, 24, 12, 0.28);
+  z-index: 4;
 }
 
 .energymeter {
@@ -556,8 +578,38 @@ body {
   z-index: 2;
 }
 
+.door--revealed {
+  animation: door-pop 0.45s ease-out;
+}
+
 .door:hover {
   transform: scale(1.04);
+}
+
+@keyframes magnet-nudge {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(calc(-0.5 * min(1vw, 1.40625vh))) scale(1.03);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes door-pop {
+  0% {
+    opacity: 0;
+    transform: translateX(calc(2 * min(1vw, 1.40625vh)));
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .dectivationpzzle--solved {
