@@ -19,6 +19,7 @@ import HintButton from "../components/buttons/HintButton";
 import MenuButton from "../components/buttons/MenuButton";
 import GameMenuContent from "../components/menu/GameMenuContent";
 import door from "../assets/images/room2/door.png";
+import EnergyMeter from "../components/energymeter/energymeter";
 import { room2Events, initialRoom2State } from "../room2Events";
 import { getRoom2Hint } from "../room2Hints";
 
@@ -29,6 +30,8 @@ export default function Room2() {
 
   const [showDeactivation, setShowDeactivation] = useState(false);
   const [puzzleSolved, setPuzzleSolved] = useState(false);
+  const [showEnergyMeter, setShowEnergyMeter] = useState(false);
+  const [energy, setEnergy] = useState<number>(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const handleTimerExpire = () => {
     navigate("/");
@@ -47,8 +50,13 @@ export default function Room2() {
     alert("Move plasma only after unlocking console.");
   };
 
-  const handleEnergyMeterClick = () => {
-    alert("Energy meter is not implemented.");
+  const generateEnergy = () => {
+    if (puzzleSolved) {
+      return 10; // low energy
+    }
+
+    const levels = [50, 90]; // medium or high
+    return levels[Math.floor(Math.random() * levels.length)];
   };
 
   const handleDeactivationSuccess = () => {
@@ -138,8 +146,14 @@ export default function Room2() {
             src={energymeter}
             className="energymeter"
             onClick={() => {
-              handleEnergyMeterClick();
+              setEnergy(generateEnergy());
+              setShowEnergyMeter(true);
             }}
+          />
+          <EnergyMeter
+            isOpen={showEnergyMeter}
+            energy={energy}
+            onClose={() => setShowEnergyMeter(false)}
           />
           {/* mark puzzleSolved: true when solved ny seting action to "SOLVE_PUZZLE" */}
           <img
