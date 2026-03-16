@@ -22,6 +22,7 @@ test.describe("Room2 magnet door reveal", () => {
 
     await page.locator(".magnet").click();
     await expect(page.locator(".door")).toBeVisible({ timeout: 3000 });
+    await expect(page.locator(".magnet")).toHaveCount(0);
 
     await page.locator(".door").click();
     await expect(page).toHaveURL(/end-page/);

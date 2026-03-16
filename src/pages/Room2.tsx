@@ -157,11 +157,14 @@ export default function Room2() {
             }}
           />
           {/* use action REVEAL_DOOR when the magnet moves to reveal the door and it becomes clickable*/}
-          <img
-            src={magnet}
-            className={`magnet ${state.progress.consoleUnlocked && !state.progress.doorRevealed ? "magnet--ready" : ""}`}
-            onClick={handleMagnetClick}
-          />
+          {!state.progress.doorRevealed && (
+            <div
+              className={`magnet-shell ${state.progress.consoleUnlocked ? "magnet-shell--ready" : ""}`}
+              onClick={handleMagnetClick}
+            >
+              <img src={magnet} className="magnet" alt="Magnet" />
+            </div>
+          )}
           {state.progress.consoleUnlocked && !state.progress.doorRevealed && (
             <div className="magnet-prompt" role="status" aria-live="polite">
               Console unlocked. Click the magnet to move plasma.
